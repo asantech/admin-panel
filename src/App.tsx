@@ -1,24 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Route } from 'react-router-dom';
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import styles from './App.module.css';
+
+import SignUpPage from './views/signUp/signUpPage/SignUpPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <div className='container-fluid p-0'>
+        <SignUpPage />
+      </div>
     </div>
   );
 }
