@@ -1,21 +1,22 @@
 export type input = {
-  kind?: 'input';
   type: 'text' | 'password';
   id: string;
   placeholder: string;
-  size: string;
+  cssClasses: string;
+  onChangeHandler: any;
 };
 
 function Input(props: input) {
-  const { id, type, placeholder, size = '' } = props;
+  const { id, type, placeholder, cssClasses, onChangeHandler } = props;
+
   return (
     <input
       id={id}
-      className={'form-control ' + size ?? ''}
+      className={'form-control ' + cssClasses ?? ''}
       type={type ?? 'text'}
       placeholder={placeholder ?? ''}
-      disabled={false}
-      readOnly={false}
+      autoComplete='off'
+      onChange={e => onChangeHandler(e)}
     />
   );
 }

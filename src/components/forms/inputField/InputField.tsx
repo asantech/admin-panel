@@ -2,26 +2,28 @@ import Label from '../label/Label';
 import Input from '../input/Input';
 
 export type inputField = {
-  kind?: 'inputField';
   id: string;
   lbl: string;
-  inputSize: string;
+  inputCSSClasses: string;
   inputType: 'text' | 'password';
   placeholder: string;
+  onChangeHandler: any;
 };
 
 function InputField(props: inputField) {
-  const { id, lbl, inputSize, inputType, placeholder } = props;
+  const { id, lbl, inputCSSClasses, inputType, placeholder, onChangeHandler } =
+    props;
   return (
-    <>
+    <div className='form-group'>
       <Label id={id} lbl={lbl} />
       <Input
         id={id}
-        size={inputSize}
+        cssClasses={inputCSSClasses}
         type={inputType}
         placeholder={placeholder}
+        onChangeHandler={onChangeHandler}
       />
-    </>
+    </div>
   );
 }
 

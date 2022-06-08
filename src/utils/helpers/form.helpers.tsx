@@ -1,54 +1,37 @@
 import _ from 'lodash';
 
-import Input, { input } from './../../components/forms/input/Input';
-import InputField, {
-  inputField,
-} from './../../components/forms/inputField/InputField';
-import Button, { button } from '../../components/basic/button/Button';
+import Input from '@/components/forms/input/Input';
+import InputField from '@/components/forms/inputField/InputField';
+import Button from '@/components/basic/button/Button';
 
-function getItem(itemSpecs: input | inputField | button) {
-  let formControl;
+function getItem(itemSpecs: any) {
   switch (itemSpecs.kind) {
     case 'input':
-      {
-        const { id, type, size, placeholder } = itemSpecs;
-        // formControl = (
-        //   <Input id={id} type={type} size={size} placeholder={placeholder} /> // use spread props later
-        // );
-        formControl = (
-          <Input {...itemSpecs} /> // use spread props later
-        );
-      }
-      break;
+      return <Input key={itemSpecs.id} {...itemSpecs} />;
     case 'inputField':
-      {
-        let { id, lbl, inputType, inputSize, placeholder } = itemSpecs;
-        // formControl = (
-        //   <InputField
-        //     id={id}
-        //     lbl={lbl}
-        //     inputType={inputType}
-        //     inputSize={inputSize}
-        //     placeholder={placeholder}
-        //   />
-        // );
-        formControl = <InputField {...itemSpecs} />;
-      }
-      break;
+      return <InputField key={itemSpecs.id} {...itemSpecs} />;
     case 'button':
-      {
-        let { className, lbl, onClickHandler } = itemSpecs;
-        formControl = (
-          <Button
-            className={className}
-            lbl={lbl}
-            onClickHandler={onClickHandler}
-          />
-        );
-      }
-      break;
+      return <Button key={itemSpecs.id} {...itemSpecs} />;
   }
-  return formControl;
+}
+
+export function createState(itemsSpecs: any[]) {
+  const state: any = {};
+  itemsSpecs.forEach(itemSpecs => {
+    if ('paramKey' in itemSpecs) {
+      state[itemSpecs.paramKey] = '';
+    }
+  });
+  return state;
+}
+
+export function setValsOnItemsExistingProps(itemsSpecs: any[], keyVals: any) {
+  return _.map(itemsSpecs, itemSpecs => {
+    keyVals.forEach(([key, val]: [string, any]) => {
+      if (key in itemSpecs) itemSpecs[key] = val;
+    });
+    return itemSpecs;
+  });
 }
 
 export function createItems(itemsSpecs: []) {

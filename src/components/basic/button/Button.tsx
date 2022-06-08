@@ -1,14 +1,19 @@
 export type button = {
-  kind?: 'button';
+  id: string;
   className: string;
   onClickHandler: any;
   lbl: string;
 };
 
 function Button(props: button) {
-  const { className, onClickHandler, lbl } = props;
+  const { id, className, onClickHandler, lbl } = props;
   return (
-    <button type='button' className={className} onClick={onClickHandler}>
+    <button
+      id={id}
+      type='button'
+      className={className}
+      onClick={onClickHandler}
+    >
       {lbl}
     </button>
   );
