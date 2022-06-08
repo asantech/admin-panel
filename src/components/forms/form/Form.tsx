@@ -12,6 +12,9 @@ function Form(props: any) {
   ]);
 
   const [itemsVals, setItemsVals] = useState(formHelpers.createState(items));
+  const [errs, setErrs] = useState({});
+
+  const schema = formHelpers.createSchema(items);
 
   function handleOnChange(e: any) {
     const itemId = e.target.getAttribute('id');
@@ -26,7 +29,11 @@ function Form(props: any) {
   }
 
   function handleSubmit(e: any) {
-    console.log(itemsVals);
+    const validationErrs = formHelpers.validateForm(itemsVals, schema);
+    if (validationErrs) {
+      setErrs(validationErrs);
+      return;
+    }
   }
 
   function handleFormSubmit(e: any) {
@@ -34,7 +41,9 @@ function Form(props: any) {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>{formHelpers.createItems(items)}</form>
+    <form onSubmit={handleFormSubmit}>
+      {formHelpers.createItems(items, itemsVals, errs)}
+    </form>
   );
 }
 

@@ -13,7 +13,7 @@ function SignUpPage() {
     <div className='sign-up-page p-5 vh-100'>
       <div className='row justify-content-md-center'>
         <div className='col-5'>
-          <h1 className='h3 mb-4 mx-auto' style={{ width: 'max-content' }}>
+          <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>
             Sign Up in the admin panel
           </h1>
           <div className='card pt-4 px-3 pb-4' style={{ maxWidth: '576px' }}>
