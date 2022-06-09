@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { find, isEmpty } from 'lodash';
 
 import store from '@/store/index';
-import * as auth from '@/store/authentication/auth';
-
+import * as authSlice from '@/store/authentication/auth';
 import * as formHelpers from '@/utils/helpers/form.helpers';
 
 function Form(props: any) {
@@ -23,7 +22,7 @@ function Form(props: any) {
     )
   );
 
-  const schema: any = formHelpers.createSchema(items);
+  const validationSchema: any = formHelpers.createSchema(items);
 
   function handleOnChange(e: any) {
     const itemId: string = e.target.getAttribute('id');
@@ -37,7 +36,7 @@ function Form(props: any) {
     if (changedItem) {
       const validationErrMsg = formHelpers.validateItem(
         { [itemId]: newItemsVals[itemId] },
-        { [itemId]: schema[itemId] }
+        { [itemId]: validationSchema[itemId] }
       );
       const newErrs: any = { ...errs };
       if (validationErrMsg) {
@@ -51,22 +50,18 @@ function Form(props: any) {
     setItemsVals(newItemsVals);
   }
 
-  function handleSubmit(e: any) {
-    const validationErrs = formHelpers.validateItems(itemsVals, schema);
+  function handleSubmit() {
+    const validationErrs = formHelpers.validateItems(
+      itemsVals,
+      validationSchema
+    );
 
     if (!isEmpty(validationErrs)) {
       setErrs(validationErrs);
       return;
     }
 
-    store.dispatch(
-      auth.signUp({
-        email: 'm@m.com',
-        password: '12345',
-      })
-    );
-
-    console.log('send request');
+    store.dispatch(authSlice.signUp(itemsVals));
   }
 
   function handleFormSubmit(e: any) {

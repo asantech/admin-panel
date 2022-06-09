@@ -1,6 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../store/authentication/auth';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import rootReducer from '@/store/rootReducer';
+import api from './middlewares/api';
 
 export default configureStore({
-  reducer: authReducer,
+  reducer: rootReducer,
+  middleware: [...getDefaultMiddleware(), api],
 });

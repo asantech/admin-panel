@@ -19,7 +19,8 @@ An admin panel
 
 ### Redux + Redux Toolkit:
 
-1. the "Ducks" pattern is used for better accessibility to the Rudux codes
+1. the "Ducks" pattern is used for better accessibility to the Rudux codes in the slices files
+2. "Thunk" is used
 
 ### Components
 

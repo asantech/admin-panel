@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 
@@ -7,7 +8,8 @@ import * as signUpConstants from '@/utils/constants/signUp.constants';
 import './SignUpPage.css';
 
 function SignUpPage() {
-  useEffect(() => {}, []);
+  const showSpinner = useSelector((state: any) => state.auth.loading);
+
   return (
     <div className='sign-up-page p-5 vh-100'>
       <div className='row justify-content-md-center'>
@@ -16,7 +18,7 @@ function SignUpPage() {
             Sign Up in the admin panel
           </h1>
           <div className='card pt-4 px-3 pb-4' style={{ maxWidth: '576px' }}>
-            {/* <OverlayedSpinner /> */}
+            {showSpinner && <OverlayedSpinner />}
             <Form items={signUpConstants.items} />
           </div>
         </div>
