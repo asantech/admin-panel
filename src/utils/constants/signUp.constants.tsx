@@ -9,9 +9,11 @@ export const items = Object.freeze([
     placeholder: 'Enter your email',
     paramKey: 'email',
     onChangeHandler: () => {},
+    onFocusHandler: () => {},
     validationHandler: Joi.string()
       .email({ tlds: { allow: false } })
-      .required(),
+      .required()
+      .label('Email'),
   },
   {
     kind: 'inputField',
@@ -22,7 +24,8 @@ export const items = Object.freeze([
     placeholder: 'Enter password',
     paramKey: 'password',
     onChangeHandler: () => {},
-    validationHandler: Joi.string().required().min(5),
+    onFocusHandler: () => {},
+    validationHandler: Joi.string().required().min(5).label('Password'),
   },
   {
     kind: 'button',
@@ -30,5 +33,6 @@ export const items = Object.freeze([
     className: 'btn btn-primary mt-3',
     lbl: 'Sign Up',
     onClickHandler: () => {},
+    disabled: false,
   },
 ]);

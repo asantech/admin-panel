@@ -1,24 +1,33 @@
-const SIGN_UP = 'signUp';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
-type SignUpParams = {
+type SignUpPayload = {
   email: string;
   password: string;
 };
 
-export const signUp = ({ email, password }: SignUpParams) => ({
-  type: SIGN_UP,
-  payload: {
-    email,
-    password,
-  },
-});
+export const signUp: any = createAction('SIGN_UP');
 
-export default function reducer(state: any = {}, action: any) {
-  if (action.type === SIGN_UP)
-    return {
-      ...state,
-      email: action.payload.email,
-      password: action.payload.password,
-    };
-  return state;
-}
+export default createReducer(
+  {},
+  {
+    [signUp.type]: (
+      state,
+      action: { type: string; payload: SignUpPayload }
+    ) => {
+      state = action.payload;
+    },
+  }
+);
+
+// export default function reducer(
+//   state: any = {},
+//   action: { type: string; payload: SignUpPayload }
+// ) {
+//   if (action.type === signUp.type) {
+//     return {
+//       ...state,
+//       ...action.payload,
+//     };
+//   }
+//   return state;
+// }

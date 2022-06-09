@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 

@@ -24,3 +24,9 @@ An admin panel
 ### Components
 
 1. only "button" type can be set on the type attribute of a button, beacuse the "submit" type is against the SPA concepts, so the Form component doesn't need to prevented by default, but I have placed it just in case the user changes the type manually to "submit".
+
+## Test cases:
+
+### Sign Up Form
+
+1. on each each input on focus, if the error msg is shown, it should hide

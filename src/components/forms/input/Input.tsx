@@ -4,13 +4,22 @@ export type input = {
   placeholder: string;
   cssClasses: string;
   onChangeHandler: any;
+  onFocusHandler: any;
   val: string | number;
   errMsg: string;
 };
 
 function Input(props: input) {
-  const { id, type, placeholder, cssClasses, errMsg, onChangeHandler, val } =
-    props;
+  const {
+    id,
+    type,
+    placeholder,
+    cssClasses,
+    errMsg,
+    onChangeHandler,
+    onFocusHandler,
+    val,
+  } = props;
 
   return (
     <>
@@ -23,6 +32,7 @@ function Input(props: input) {
         placeholder={placeholder ?? ''}
         autoComplete='off'
         onChange={e => onChangeHandler(e, props)}
+        onFocus={e => onFocusHandler(e, props)}
         value={val}
       />
       {errMsg && <div className='invalid-feedback m-0'>{errMsg}</div>}

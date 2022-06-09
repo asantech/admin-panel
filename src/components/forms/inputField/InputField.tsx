@@ -9,6 +9,7 @@ export type inputField = {
   inputVal: string | number;
   placeholder: string;
   onChangeHandler: any;
+  onFocusHandler: any;
   errMsg: string;
 };
 
@@ -20,6 +21,7 @@ function InputField(props: inputField) {
     inputType,
     placeholder,
     onChangeHandler,
+    onFocusHandler,
     inputVal,
     errMsg,
   } = props;
@@ -32,6 +34,7 @@ function InputField(props: inputField) {
         type={inputType}
         placeholder={placeholder}
         onChangeHandler={onChangeHandler}
+        onFocusHandler={onFocusHandler}
         val={inputVal}
         errMsg={errMsg}
       />

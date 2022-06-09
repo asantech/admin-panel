@@ -1,5 +1,4 @@
-import _ from 'lodash';
-
+import { forEach, map, isEmpty } from 'lodash';
 import Joi from 'joi';
 
 import Input from '@/components/forms/input/Input';
@@ -7,27 +6,28 @@ import InputField from '@/components/forms/inputField/InputField';
 import Button from '@/components/basic/button/Button';
 
 function createItem(itemSpecs: any, state: any, errMsgs: any) {
-  switch (itemSpecs.kind) {
+  const { kind, id, paramKey } = itemSpecs;
+  switch (kind) {
     case 'input':
       return (
         <Input
-          key={itemSpecs.id}
+          key={id}
           {...itemSpecs}
-          val={state[itemSpecs.paramKey]}
-          errMsg={errMsgs[itemSpecs.id]}
+          val={state[paramKey]}
+          errMsg={errMsgs[id]}
         />
       );
     case 'inputField':
       return (
         <InputField
-          key={itemSpecs.id}
+          key={id}
           {...itemSpecs}
-          inputVal={state[itemSpecs.paramKey]}
-          errMsg={errMsgs[itemSpecs.id]}
+          inputVal={state[paramKey]}
+          errMsg={errMsgs[id]}
         />
       );
     case 'button':
-      return <Button key={itemSpecs.id} {...itemSpecs} />;
+      return <Button key={id} {...itemSpecs} />;
   }
 }
 
@@ -43,15 +43,15 @@ export function createState(itemsSpecs: any[]) {
 
 export function createSchema(itemsSpecs: any[]) {
   const schema: any = {};
-  _.forEach(itemsSpecs, val => {
+  forEach(itemsSpecs, val => {
     if ('validationHandler' in val) schema[val.id] = val.validationHandler;
   });
-  return Joi.object(schema);
+  return schema;
 }
 
 export function setValsOnItemsExistingProps(itemsSpecs: any[], keyVals: any) {
-  return _.map(itemsSpecs, itemSpecs => {
-    keyVals.forEach(([key, val]: [string, any]) => {
+  return map(itemsSpecs, itemSpecs => {
+    forEach(keyVals, (val: any, key: string) => {
       if (key in itemSpecs) itemSpecs[key] = val;
     });
     return itemSpecs;
@@ -60,20 +60,25 @@ export function setValsOnItemsExistingProps(itemsSpecs: any[], keyVals: any) {
 
 export function createItems(itemsSpecs: [], state: any, errMsgs: any) {
   return (
-    <>{_.map(itemsSpecs, itemSpecs => createItem(itemSpecs, state, errMsgs))}</>
+    <>{map(itemsSpecs, itemSpecs => createItem(itemSpecs, state, errMsgs))}</>
   );
 }
 
-export function validateForm(state: any, schema: any) {
-  const result = schema.validate(state, {
+export function validateItem(state: any, schema: any) {
+  const { error } = Joi.object(schema).validate(state);
+  return error ? error.details[0].message : null;
+}
+
+export function validateItems(state: any, schema: any) {
+  const { error }: { error: any } = Joi.object(schema).validate(state, {
     abortEarly: false,
     allowUnknown: true,
   });
 
-  if (!('error' in result)) return null;
+  if (isEmpty(error)) return null;
 
-  const errors: any = {};
-  _.forEach(result.error.details, val => {
+  const errors: any = {}; // بررسی شود که map و reduce قابل استفاده هست یا خیر
+  forEach(error.details, val => {
     errors[val.path[0]] = val.message;
   });
 
