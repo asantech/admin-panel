@@ -48,33 +48,62 @@ export const signUp: any = (params: any) => {
   return async (dispatch: any) => {
     await apiServices.createAPICall({
       ...signInConstants.apiConfig,
-      ...params,
+      data: params.data,
+      ...{
+        onStart: () => {
+          dispatch(authSlice.actions.authReqStart());
+        },
+        onSuccess: () => {
+          dispatch(authSlice.actions.registerUserData());
+          storageServices.setItem('userIsAuthenticated', true);
+          toast.success(
+            'You have been registered successfully to the app, you can now log in',
+            {
+              position: toast.POSITION.BOTTOM_RIGHT,
+            }
+          );
+          if ('afterSuccess' in params) params.afterSuccess();
+        },
+        onErr: (err: any) => {
+          toast.success(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        },
+        onEnd: () => {
+          dispatch(authSlice.actions.authReqEnd());
+        },
+      },
     });
-    dispatch(authSlice.actions.registerUserData());
-    storageServices.setItem('userIsAuthenticated', true);
-    toast.success(
-      'You have been registered successfully to the app, you can now sign in',
-      {
-        position: toast.POSITION.TOP_CENTER,
-      }
-    );
   };
 };
 
 export const signIn: any = (params: any) => {
   return async (dispatch: any) => {
-    const resData = await apiServices.createAPICall({
-      ...signUpConstants.apiConfig,
-      ...params,
+    await apiServices.createAPICall({
+      ...signInConstants.apiConfig,
+      data: params.data,
+      ...{
+        onStart: () => {
+          dispatch(authSlice.actions.authReqStart());
+        },
+        onSuccess: (resData: any) => {
+          dispatch(authSlice.actions.signIn(resData));
+          storageServices.setItem('userIsLoggedIn', true);
+          toast.success('You are logged in', {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+          if ('afterSuccess' in params) params.afterSuccess();
+        },
+        onErr: (err: any) => {
+          toast.success(err.message, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        },
+        onEnd: () => {
+          dispatch(authSlice.actions.authReqEnd());
+        },
+      },
     });
-    dispatch(authSlice.actions.signIn(resData));
-    storageServices.setItem('userIsLoggedIn', true);
-    toast.success(
-      'You have been registered successfully to the app, you can now sign in',
-      {
-        position: toast.POSITION.TOP_CENTER,
-      }
-    );
   };
 };
 

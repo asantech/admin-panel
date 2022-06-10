@@ -19,7 +19,7 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
-    <ToastContainer position='top-right' />
+    <ToastContainer position='bottom-right' theme='colored' />
   </React.StrictMode>
 );
 

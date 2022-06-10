@@ -1,5 +1,6 @@
 import Sidebar from '@/components/layout/sidebar/Sidebar';
 import Navbar from '@/components/layout/navigation/navbar/Navbar';
+import DashboardRoutes from '@/components/routes/appRoutes/DashboardRoutes';
 
 function DashboardPage() {
   return (
@@ -11,7 +12,9 @@ function DashboardPage() {
           </div>
           <div className='col-10 p-0'>
             <Navbar />
-            <main>dashboard page</main>
+            <main className='p-5'>
+              <DashboardRoutes />
+            </main>
           </div>
         </div>
       </div>

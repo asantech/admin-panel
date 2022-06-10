@@ -20,15 +20,9 @@ function SignUpPage() {
     dispatch(
       authSlice.signUp({
         data: itemsVals,
-        onStart: () => {
-          dispatch(authSlice.authActions.authReqStart());
-        },
-        onSuccess: () => {
+        afterSuccess: () => {
           resetForm();
           navigate('/sign-in');
-        },
-        onEnd: () => {
-          dispatch(authSlice.authActions.authReqEnd());
         },
       })
     );

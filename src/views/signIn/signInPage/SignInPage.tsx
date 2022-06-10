@@ -16,17 +16,11 @@ function SignInPage() {
 
   function onHandleSubmitForm({ itemsVals, resetForm }: any) {
     dispatch(
-      authSlice.signUp({
+      authSlice.signIn({
         data: itemsVals,
-        onStart: () => {
-          dispatch(authSlice.authActions.authReqStart());
-        },
-        onSuccess: () => {
+        afterSuccess: () => {
           resetForm();
           navigate('/dashboard');
-        },
-        onEnd: () => {
-          dispatch(authSlice.authActions.authReqEnd());
         },
       })
     );

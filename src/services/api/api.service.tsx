@@ -14,12 +14,10 @@ export const createAPICall = async (apiConfig: any) => {
       data,
     });
 
-    if (onSuccess) onSuccess();
+    if (onSuccess) onSuccess(res.data);
     if (onEnd) onEnd();
-    return res.data;
   } catch (err: any) {
     if (onErr) onErr(err);
     if (onEnd) onEnd();
-    throw Error(err);
   }
 };
