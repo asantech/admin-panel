@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { find, isEmpty } from 'lodash';
 
-import store from '@/store/index';
-import * as authSlice from '@/store/authentication/auth';
 import * as formHelpers from '@/utils/helpers/form.helpers';
 
 function Form(props: any) {
@@ -16,11 +14,15 @@ function Form(props: any) {
     disabled: Boolean(Object.keys(errs).length),
   };
 
-  const [itemsVals, setItemsVals] = useState(
-    formHelpers.createState(
-      formHelpers.setValsOnItemsExistingProps(items, addedItemsPropsValsConfig)
-    )
+  const initialState = formHelpers.createState(
+    formHelpers.setValsOnItemsExistingProps(items, addedItemsPropsValsConfig)
   );
+
+  const [itemsVals, setItemsVals] = useState(initialState);
+
+  function resetForm() {
+    setItemsVals(initialState);
+  }
 
   const validationSchema: any = formHelpers.createSchema(items);
 
@@ -61,7 +63,8 @@ function Form(props: any) {
       return;
     }
 
-    store.dispatch(authSlice.signUp(itemsVals));
+    if ('onHandleSubmit' in props)
+      props.onHandleSubmit({ itemsVals, resetForm });
   }
 
   function handleFormSubmit(e: any) {

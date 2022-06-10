@@ -31,9 +31,9 @@ export const items = Object.freeze([
   },
   {
     kind: 'button',
-    id: 'sign-up-btn',
+    id: 'sign-in-btn',
     className: 'btn btn-primary mt-3',
-    lbl: 'Sign Up',
+    lbl: 'Sign In',
     onClickHandler: () => {},
     disabled: false,
   },
@@ -41,6 +41,6 @@ export const items = Object.freeze([
 
 export const apiConfig = {
   baseURL: apiConstants.baseURL,
-  url: apiConstants.urls.signUp,
+  url: apiConstants.urls.signIn,
   method: 'post',
 };

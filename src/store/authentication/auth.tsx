@@ -1,47 +1,83 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import * as apiActions from '@/store/api/api';
-import apiConstants from '@/utils/constants/api.constants';
+import { toast } from 'react-toastify';
 
-type SignUpData = {
-  email: string;
-  password: string;
+import * as signUpConstants from '@/utils/constants/signUp.constants';
+import * as signInConstants from '@/utils/constants/signIn.constants';
+
+import * as apiServices from '@/services/api/api.service';
+import * as storageServices from '@/services/storage/storage.service';
+
+type InitialState = {
+  userData: any;
+  loading: boolean;
+};
+
+const initialState: InitialState = {
+  userData: {},
+  loading: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    userData: {},
-    loading: false,
-  },
+  initialState,
   reducers: {
-    authReqStart: userState => {
-      userState.loading = true;
+    authReqStart: authState => {
+      authState.loading = true;
     },
-    signUp: (
-      userState,
+    registerUserData: authState => {
+      // authState.loading = false; // نیاز به این مورد بررسی شود
+    },
+    signIn: (
+      authState,
       action: {
         type: string;
         payload: { userData: { id: number; token: string } };
       }
     ) => {
-      userState.userData = action.payload;
-      userState.loading = false;
+      authState.userData = action.payload;
     },
-    authReqFailed: userState => {
-      userState.loading = false;
+    signOut: authState => {},
+    authReqEnd: authState => {
+      authState.loading = false;
     },
   },
 });
 
-export const signUp: any = (data: SignUpData) =>
-  apiActions.apiCallBegan({
-    url: apiConstants.urls.signUp,
-    method: 'post',
-    data,
-    onStart: authSlice.actions.authReqStart.type,
-    onSuccess: authSlice.actions.signUp.type,
-    onErr: authSlice.actions.authReqFailed.type,
-  });
+export const signUp: any = (params: any) => {
+  return async (dispatch: any) => {
+    await apiServices.createAPICall({
+      ...signInConstants.apiConfig,
+      ...params,
+    });
+    dispatch(authSlice.actions.registerUserData());
+    storageServices.setItem('userIsAuthenticated', true);
+    toast.success(
+      'You have been registered successfully to the app, you can now sign in',
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
+  };
+};
+
+export const signIn: any = (params: any) => {
+  return async (dispatch: any) => {
+    const resData = await apiServices.createAPICall({
+      ...signUpConstants.apiConfig,
+      ...params,
+    });
+    dispatch(authSlice.actions.signIn(resData));
+    storageServices.setItem('userIsLoggedIn', true);
+    toast.success(
+      'You have been registered successfully to the app, you can now sign in',
+      {
+        position: toast.POSITION.TOP_CENTER,
+      }
+    );
+  };
+};
+
+export const authActions = authSlice.actions;
 
 export default authSlice.reducer;

@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 
 import store from '@/store/index';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import App from './App';
 
@@ -18,6 +19,7 @@ root.render(
     <Provider store={store}>
       <App />
     </Provider>
+    <ToastContainer position='top-right' />
   </React.StrictMode>
 );
 

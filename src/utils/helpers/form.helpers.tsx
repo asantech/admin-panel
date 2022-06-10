@@ -41,6 +41,16 @@ export function createState(itemsSpecs: any[]) {
   return state;
 }
 
+export function createEmptyState(itemsSpecs: any[]) {
+  const state: any = {};
+  itemsSpecs.forEach(itemSpecs => {
+    if ('paramKey' in itemSpecs) {
+      state[itemSpecs.paramKey] = '';
+    }
+  });
+  return state;
+}
+
 export function createSchema(itemsSpecs: any[]) {
   const schema: any = {};
   forEach(itemsSpecs, val => {
