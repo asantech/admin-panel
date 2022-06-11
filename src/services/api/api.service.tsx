@@ -3,7 +3,8 @@ import axios from 'axios';
 import apiConstants from '@/utils/constants/api.constants';
 
 export const createAPICall = async (apiConfig: any) => {
-  const { url, method, data, onStart, onSuccess, onErr, onEnd } = apiConfig;
+  const { url, method, params, data, onStart, onSuccess, onErr, onEnd } =
+    apiConfig;
 
   try {
     if (onStart) onStart();
@@ -11,6 +12,7 @@ export const createAPICall = async (apiConfig: any) => {
       baseURL: apiConstants.baseURL,
       url,
       method,
+      params,
       data,
     });
 

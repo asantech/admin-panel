@@ -3,5 +3,6 @@ export default Object.freeze({
   urls: {
     signUp: '/register',
     signIn: '/login',
+    users: '/users',
   },
 });

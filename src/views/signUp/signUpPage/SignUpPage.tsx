@@ -35,7 +35,10 @@ function SignUpPage() {
           <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>
             Sign in to your account to continue
           </h1>
-          <div className='card pt-4 px-3 pb-4' style={{ maxWidth: '576px' }}>
+          <div
+            className='card pt-4 px-3 pb-4 position-relative'
+            style={{ maxWidth: '576px' }} // بعدا اصلاح شود
+          >
             {showSpinner && <OverlayedSpinner />}
             <Form
               items={signUpConstants.items}

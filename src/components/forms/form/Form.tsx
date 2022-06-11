@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { find, isEmpty } from 'lodash';
+import { find, isEmpty, has } from 'lodash';
 
 import * as formHelpers from '@/utils/helpers/form.helpers';
 
@@ -63,7 +63,7 @@ function Form(props: any) {
       return;
     }
 
-    if ('onHandleSubmit' in props)
+    if (props.has('onHandleSubmit'))
       props.onHandleSubmit({ itemsVals, resetForm });
   }
 

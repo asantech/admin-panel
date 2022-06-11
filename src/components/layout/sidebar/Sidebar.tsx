@@ -1,10 +1,22 @@
+import { Link } from 'react-router-dom';
 import styles from './Sidebar.module.css';
+
+import * as dashboardConstants from '@/utils/constants/dashboard.constants';
 
 function Sidebar() {
   return (
-    <div className={styles['sidebar']}>
+    <div className={styles['sidebar'] + ' pt-3 px-3'}>
+      {/* بصورت ورودی داده شود */}
       <ul className='nav nav-pills flex-column mb-auto'>
-        <li className='nav-item'>
+        {dashboardConstants.navLinks.map(navLink => (
+          <li className='nav-item'>
+            <Link to={navLink.path} className='nav-link text-white'>
+              {navLink.lbl}
+            </Link>
+          </li>
+        ))}
+
+        {/* <li className='nav-item'>
           <a href='#' className='nav-link active' aria-current='page'>
             Home
           </a>
@@ -13,22 +25,7 @@ function Sidebar() {
           <a href='#' className='nav-link text-white'>
             Dashboard
           </a>
-        </li>
-        <li>
-          <a href='#' className='nav-link text-white'>
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href='#' className='nav-link text-white'>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href='#' className='nav-link text-white'>
-            Customers
-          </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );
