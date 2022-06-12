@@ -32,8 +32,8 @@ export const items = Object.freeze([
   {
     kind: 'button',
     id: 'sign-in-btn',
-    className: 'btn btn-primary mt-3',
-    lbl: 'Sign In',
+    className: 'btn-primary mt-3',
+    children: 'Sign In',
     onClickHandler: () => {},
     disabled: false,
   },

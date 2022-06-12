@@ -20,7 +20,7 @@ function UsersView() {
 
   function goToUserProfile(user: any) {
     navigate('/dashboard/user/' + user.id, {
-      state: { id: 1, name: 'sabaoon' },
+      state: user,
     });
   }
 

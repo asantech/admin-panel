@@ -5,27 +5,27 @@ import * as dashboardConstants from '@/utils/constants/dashboard.constants';
 
 function Sidebar() {
   return (
-    <div className={styles['sidebar'] + ' pt-3 px-3'}>
+    <div className={styles['sidebar'] + ' pt-3 px-4 position-fixed'}>
+      <div className='sidebar-brand mb-4'>
+        <span className='sidebar-brand-text align-middle text-white'>
+          <b>Admin Panel</b>
+          <sup>
+            <small className='badge bg-primary text-uppercase mx-1'>Pro</small>
+          </sup>
+        </span>
+      </div>
       {/* بصورت ورودی داده شود */}
       <ul className='nav nav-pills flex-column mb-auto'>
-        {dashboardConstants.navLinks.map(navLink => (
-          <li className='nav-item'>
-            <Link to={navLink.path} className='nav-link text-white'>
+        <li key='nav-items-group-header' className='nav-item mb-2'>
+          <small className='text-white'>Pages</small>
+        </li>
+        {dashboardConstants.navLinks.map((navLink, i: number) => (
+          <li key={i} className='nav-item'>
+            <Link to={navLink.path} className='nav-link text-white p-0 mb-3'>
               {navLink.lbl}
             </Link>
           </li>
         ))}
-
-        {/* <li className='nav-item'>
-          <a href='#' className='nav-link active' aria-current='page'>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href='#' className='nav-link text-white'>
-            Dashboard
-          </a>
-        </li> */}
       </ul>
     </div>
   );

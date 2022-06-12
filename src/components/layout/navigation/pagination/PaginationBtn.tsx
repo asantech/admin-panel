@@ -1,16 +1,16 @@
 type PaginationBtn = {
-  key: string | number;
+  id: string | number;
   className?: string;
-  page: number | string;
+  page: number;
   content: any;
   onClick?: any;
 };
 
 function PageItem(props: PaginationBtn) {
-  const { key, className, page, content, onClick } = props;
+  const { id, className, page, content, onClick } = props;
   return (
     <li
-      key={key}
+      key={id}
       className={'page-item' + className}
       onClick={() => onClick(page)}
     >

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 
-import * as signUpConstants from '@/utils/constants/signUp.constants';
+import * as signInConstants from '@/utils/constants/signIn.constants';
 import * as authSlice from '@/store/authentication/auth';
 
 function SignInPage() {
@@ -39,7 +39,7 @@ function SignInPage() {
           >
             {showSpinner && <OverlayedSpinner />}
             <Form
-              items={signUpConstants.items}
+              items={signInConstants.items}
               onHandleSubmit={onHandleSubmitForm}
             />
           </div>

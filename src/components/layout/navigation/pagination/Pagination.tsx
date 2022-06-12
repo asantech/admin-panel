@@ -1,6 +1,6 @@
 import { range } from 'lodash';
 
-import PageItem from './PageItem';
+import PaginationBtn from './PaginationBtn';
 
 type PaginationData = {
   page: number;
@@ -17,35 +17,29 @@ function Pagination(props: PaginationData) {
       aria-label='Page navigation example'
     >
       <ul className='pagination'>
-        <li
-          key='prev-page-btn'
-          className={'page-item' + (currentPage === 1 ? ' disabled' : '')}
+        <PaginationBtn
+          id='prev-page-btn'
+          className={currentPage === 1 ? ' disabled pe-none' : ''}
+          page={1}
+          content={<span aria-hidden='true'>&laquo;</span>}
           onClick={() => onPageItemClick(currentPage - 1)}
-        >
-          <div className='page-link'>
-            <span aria-hidden='true'>&laquo;</span>
-          </div>
-        </li>
+        />
         {range(1, totalPages + 1).map(page => (
-          <li
-            key={page}
-            className={'page-item' + (currentPage === page ? ' active' : '')}
+          <PaginationBtn
+            id={page}
+            className={currentPage === page ? ' active' : ''}
+            page={page}
+            content={page}
             onClick={() => onPageItemClick(page)}
-          >
-            <div className='page-link'>{page}</div>
-          </li>
+          />
         ))}
-        <li
-          key='next-page-btn'
-          className={
-            'page-item' + (currentPage === totalPages ? ' disabled' : '')
-          }
+        <PaginationBtn
+          id='next-page-btn'
+          className={currentPage === totalPages ? ' disabled pe-none' : ''}
+          page={totalPages}
+          content={<span aria-hidden='true'>&raquo;</span>}
           onClick={() => onPageItemClick(currentPage + 1)}
-        >
-          <div className='page-link'>
-            <span aria-hidden='true'>&raquo;</span>
-          </div>
-        </li>
+        />
       </ul>
     </nav>
   );
