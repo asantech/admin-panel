@@ -47,7 +47,7 @@ const authSlice = createSlice({
 export const signUp: any = (params: any) => {
   return async (dispatch: any) => {
     await apiServices.createAPICall({
-      ...signUpConstants.apiConfig,
+      ...signUpConstants.baseAPIConfig,
       data: params.data,
       onStart: () => {
         dispatch(authSlice.actions.authReqStart());
@@ -64,7 +64,7 @@ export const signUp: any = (params: any) => {
         if ('afterSuccess' in params) params.afterSuccess();
       },
       onErr: (err: any) => {
-        toast.success(err.message, {
+        toast.error(err.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       },
@@ -78,7 +78,7 @@ export const signUp: any = (params: any) => {
 export const signIn: any = (params: any) => {
   return async (dispatch: any) => {
     await apiServices.createAPICall({
-      ...signInConstants.apiConfig,
+      ...signInConstants.baseAPIConfig,
       data: params.data,
       onStart: () => {
         dispatch(authSlice.actions.authReqStart());
@@ -92,7 +92,7 @@ export const signIn: any = (params: any) => {
         if ('afterSuccess' in params) params.afterSuccess();
       },
       onErr: (err: any) => {
-        toast.success(err.message, {
+        toast.error(err.message, {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
       },

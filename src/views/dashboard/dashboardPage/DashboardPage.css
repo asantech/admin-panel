@@ -1,4 +1,4 @@
 #dashboard-page main {
-  /* height: calc(100vh - 65px); */
+  min-height: calc(calc(100vh - 65px) - 53px);
   background-color: #f5f7fb;
 }

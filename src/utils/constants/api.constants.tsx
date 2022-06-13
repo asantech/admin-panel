@@ -4,5 +4,6 @@ export default Object.freeze({
     signUp: '/register',
     signIn: '/login',
     users: '/users',
+    resources: '/unknown',
   },
 });

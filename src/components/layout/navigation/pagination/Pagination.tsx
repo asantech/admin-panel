@@ -18,7 +18,7 @@ function Pagination(props: PaginationData) {
     >
       <ul className='pagination'>
         <PaginationBtn
-          id='prev-page-btn'
+          key='prev-page-btn'
           className={currentPage === 1 ? ' disabled pe-none' : ''}
           page={1}
           content={<span aria-hidden='true'>&laquo;</span>}
@@ -26,7 +26,7 @@ function Pagination(props: PaginationData) {
         />
         {range(1, totalPages + 1).map(page => (
           <PaginationBtn
-            id={page}
+            key={page}
             className={currentPage === page ? ' active' : ''}
             page={page}
             content={page}
@@ -34,7 +34,7 @@ function Pagination(props: PaginationData) {
           />
         ))}
         <PaginationBtn
-          id='next-page-btn'
+          key='next-page-btn'
           className={currentPage === totalPages ? ' disabled pe-none' : ''}
           page={totalPages}
           content={<span aria-hidden='true'>&raquo;</span>}

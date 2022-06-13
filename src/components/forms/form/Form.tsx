@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { find, isEmpty, has } from 'lodash';
 
 import * as formHelpers from '@/utils/helpers/form.helpers';
+import { items } from './../../../utils/constants/signUp.constants';
 
 function Form(props: any) {
   let { items } = props;
@@ -17,6 +18,8 @@ function Form(props: any) {
   const initialState = formHelpers.createState(
     formHelpers.setValsOnItemsExistingProps(items, addedItemsPropsValsConfig)
   );
+
+  console.log('initialState', initialState);
 
   const [itemsVals, setItemsVals] = useState(initialState);
 
@@ -63,13 +66,18 @@ function Form(props: any) {
       return;
     }
 
-    if (props.has('onHandleSubmit'))
+    if (has(props, 'onHandleSubmit'))
       props.onHandleSubmit({ itemsVals, resetForm });
   }
 
   function handleFormSubmit(e: any) {
     e.preventDefault();
   }
+
+  useEffect(() => {
+    console.log(props.itemsVals);
+    if (props.itemsVals) setItemsVals(props.itemsVals);
+  }, []);
 
   return (
     <form onSubmit={handleFormSubmit}>

@@ -6,23 +6,18 @@ import InputField from '@/components/forms/inputField/InputField';
 import Button from '@/components/basic/button/Button';
 
 function createItem(itemSpecs: any, state: any, errMsgs: any) {
-  const { kind, id, paramKey } = itemSpecs;
+  const { kind, id } = itemSpecs;
   switch (kind) {
     case 'input':
       return (
-        <Input
-          key={id}
-          {...itemSpecs}
-          val={state[paramKey]}
-          errMsg={errMsgs[id]}
-        />
+        <Input key={id} {...itemSpecs} val={state[id]} errMsg={errMsgs[id]} />
       );
     case 'inputField':
       return (
         <InputField
           key={id}
           {...itemSpecs}
-          inputVal={state[paramKey]}
+          inputVal={state[id]}
           errMsg={errMsgs[id]}
         />
       );
@@ -34,18 +29,11 @@ function createItem(itemSpecs: any, state: any, errMsgs: any) {
 export function createState(itemsSpecs: any[]) {
   const state: any = {};
   itemsSpecs.forEach(itemSpecs => {
-    if ('paramKey' in itemSpecs) {
-      state[itemSpecs.paramKey] = '';
-    }
-  });
-  return state;
-}
-
-export function createEmptyState(itemsSpecs: any[]) {
-  const state: any = {};
-  itemsSpecs.forEach(itemSpecs => {
-    if ('paramKey' in itemSpecs) {
-      state[itemSpecs.paramKey] = '';
+    if (
+      'id' in itemSpecs &&
+      (itemSpecs.kind === 'inputField' || itemSpecs.kind === 'input')
+    ) {
+      state[itemSpecs.id] = '';
     }
   });
   return state;

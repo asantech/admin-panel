@@ -1,34 +1,12 @@
-import Joi from 'joi';
-
 import apiConstants from '@/utils/constants/api.constants';
+import * as formConstants from '@/utils/constants/form.contants';
 
 export const items = Object.freeze([
-  {
-    kind: 'inputField',
-    id: 'email',
-    inputCSSClasses: 'mb-2',
-    lbl: 'Email',
-    placeholder: 'Enter your email',
-    paramKey: 'email',
-    onChangeHandler: () => {},
-    onFocusHandler: () => {},
-    validationHandler: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required()
-      .label('Email'),
-  },
-  {
-    kind: 'inputField',
-    id: 'password',
-    inputType: 'password',
-    inputCSSClasses: 'mb-2',
-    lbl: 'Password',
-    placeholder: 'Enter password',
-    paramKey: 'password',
-    onChangeHandler: () => {},
-    onFocusHandler: () => {},
-    validationHandler: Joi.string().required().min(5).label('Password'),
-  },
+  // formConstants.controls.firstname,
+  // formConstants.controls.lastname,
+  formConstants.controls.email,
+  // formConstants.controls.job,
+  formConstants.controls.password,
   {
     kind: 'button',
     id: 'sign-up-btn',
@@ -39,7 +17,7 @@ export const items = Object.freeze([
   },
 ]);
 
-export const apiConfig = {
+export const baseAPIConfig = {
   baseURL: apiConstants.baseURL,
   url: apiConstants.urls.signUp,
   method: 'post',

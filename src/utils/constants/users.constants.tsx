@@ -1,8 +1,11 @@
 import apiConstants from '@/utils/constants/api.constants';
+import * as usersActions from '@/store/entities/users';
+
+import { Link } from 'react-router-dom';
 
 import Image from '@/components/content/image/Image';
 
-export const apiConfig = Object.freeze({
+export const baseAPIConfig = Object.freeze({
   baseURL: apiConstants.baseURL,
   url: apiConstants.urls.users,
   method: 'get',
@@ -19,7 +22,7 @@ export const usersSchema = Object.freeze([
         className='img-thumbnail rounded-circle d-flex justify-content-center'
         src={data.avatar}
         alt={data.first_name + '\n' + data.last_name}
-        style={{ width: '90px', height: '90px', fontSize: '12px' }} // بعدا اصلاح شود
+        style={{ width: '70px', height: '70px', fontSize: '10px' }} // بعدا اصلاح شود
       />
     ),
   },
@@ -27,10 +30,23 @@ export const usersSchema = Object.freeze([
   { path: 'last_name', lbl: 'Last Name' },
   {
     path: 'actions',
-    content: () => (
+    content: (data: any, i: number, dispatch: any) => (
       <>
-        <i className='bi bi-pencil-fill text-success mx-2'></i>
-        <i className='bi bi-trash-fill text-danger'></i>
+        <Link to={'/dashboard/user/' + data.id} state={data}>
+          <i className='bi bi-pencil-fill text-success mx-2'></i>
+        </Link>
+        <i
+          className='bi bi-trash-fill text-danger'
+          onClick={() => {
+            dispatch(
+              usersActions.delUser({
+                data: {
+                  id: data.id,
+                },
+              })
+            );
+          }}
+        ></i>
       </>
     ),
   },

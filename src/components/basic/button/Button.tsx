@@ -1,6 +1,6 @@
 export type button = {
   id?: string;
-  className: string;
+  className?: string;
   onClickHandler?: any;
   disabled?: true | false;
   children: any;
@@ -15,6 +15,7 @@ function Button(props: button) {
       className={'btn ' + className ?? ''}
       onClick={onClickHandler}
       disabled={disabled ?? false}
+      role='button'
     >
       {children}
     </button>

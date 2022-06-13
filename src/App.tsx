@@ -5,6 +5,8 @@ import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import './App.css';
+
 import AppRoutes from '@/components/routes/appRoutes/AppRoutes';
 
 function App() {
