@@ -6,6 +6,7 @@ import UserProfileView from '@/views/dashboard/userProfileView/UserProfileView';
 import ResourcesView from '@/views/dashboard/resourcesView/ResourcesView';
 import ResourceView from '@/views/dashboard/resourceView/ResourceView';
 import UserView from '@/views/dashboard/userView/UserView';
+import NotFoundView from '@/views/errMsgs/notFound/NotFoundView';
 
 function DashboardRoutes() {
   return (
@@ -17,6 +18,10 @@ function DashboardRoutes() {
       <Route path='resource/:id' element={<ResourceView />} />
       <Route path='user/:id' element={<UserView />} />
       <Route path='user/' element={<UserView />} />
+      <Route
+        path='*'
+        element={<NotFoundView msg='404 error, view not found.' />}
+      />
     </Routes>
   );
 }

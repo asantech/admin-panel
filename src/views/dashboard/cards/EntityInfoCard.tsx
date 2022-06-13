@@ -16,11 +16,13 @@ function EntityInfoCard(props: any) {
   }, []);
 
   return (
-    <Card className={'shadow ' + (props.bgColor ?? '')}>
-      <CardHeader className={'border-0 ' + (props.bgColor ?? '')}>
-        <span className='fs-5 fw-bold'>{props.headerContent} : </span>
+    <Card className='shadow'>
+      <CardHeader className='border-0 bg-white'>
+        <span className='fs-6 fw-bold color-939ba2'>
+          {props.headerContent} :{' '}
+        </span>
       </CardHeader>
-      <CardBody className='p-3'>Total: {totalItems}</CardBody>
+      <CardBody className='pt-4 px-3 pb-3'>Total: {totalItems}</CardBody>
     </Card>
   );
 }

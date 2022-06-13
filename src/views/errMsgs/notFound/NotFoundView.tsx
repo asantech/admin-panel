@@ -1,10 +1,14 @@
 import Alert from '@/components/basic/Alert/Alert';
 
-function NotFoundView() {
+type Props = {
+  msg?: string;
+};
+
+function NotFoundView(props: Props) {
   return (
     <div className='not-found-view p-5'>
       <Alert type='danger'>
-        <p className='fw-bold'>404 error, page not found.</p>
+        <p className='fw-bold'>{props.msg ?? '404 error, page not found.'}</p>
       </Alert>
     </div>
   );

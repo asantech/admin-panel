@@ -1,8 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import store from '@/store/index';
-
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 import Image from '@/components/content/image/Image';
@@ -14,7 +12,7 @@ import * as generalHelpers from '@/utils/helpers/general.helpers';
 function UserView() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loading: showSpinner } = useSelector(state => store.getState().users);
+  const { loading: showSpinner } = useSelector((state: any) => state.users);
   const dispatch = useDispatch();
   const { state }: { state: any } = location;
   let userData = state

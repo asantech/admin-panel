@@ -36,7 +36,7 @@ function SignInPage() {
       <div className='row justify-content-md-center'>
         <div className='col-5'>
           <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>
-            Sign In in to the admin panel
+            Sign In to the admin panel
           </h1>
           <Card className='pt-4 px-3 pb-4 position-relative max-width-576px'>
             <CardBody>

@@ -31,11 +31,11 @@ function SignUpPage() {
   }
 
   return (
-    <div id='sign-up-page' className='sign-up-page p-5 vh-100'>
+    <div id='sign-up-page' className='sign-up-page p-5 h-100'>
       <div className='row justify-content-md-center'>
         <div className='col-5'>
           <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>
-            Sign in to your account to continue
+            Sign Up to your account
           </h1>
           <Card className='pt-4 px-3 pb-4 position-relative max-width-576px'>
             {showSpinner && <OverlayedSpinner />}

@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { has } from 'lodash';
+
 import { toast } from 'react-toastify';
 
 import * as signUpConstants from '@/utils/constants/signUp.constants';
@@ -11,11 +13,13 @@ import * as storageServices from '@/services/storage/storage.service';
 type InitialState = {
   userData: any;
   loading: boolean;
+  token: null | string;
 };
 
 const initialState: InitialState = {
   userData: {},
   loading: false,
+  token: null,
 };
 
 const authSlice = createSlice({
@@ -26,18 +30,23 @@ const authSlice = createSlice({
       authState.loading = true;
     },
     registerUserData: authState => {
+      // بعدا برداشته شود
       // authState.loading = false; // نیاز به این مورد بررسی شود
     },
     signIn: (
       authState,
       action: {
         type: string;
-        payload: { userData: { id: number; token: string } };
+        payload: { userData: { email: string }; token: string };
       }
     ) => {
-      authState.userData = action.payload;
+      authState.userData = action.payload.userData;
+      authState.token = action.payload.token;
     },
-    signOut: authState => {},
+    signOut: authState => {
+      authState.userData = {};
+      authState.token = null;
+    },
     authReqEnd: authState => {
       authState.loading = false;
     },
@@ -54,14 +63,14 @@ export const signUp: any = (params: any) => {
       },
       onSuccess: () => {
         dispatch(authSlice.actions.registerUserData());
-        storageServices.setItem('userIsAuthenticated', true);
+        storageServices.setItem('userIsSignedUp', 'true'); // آیا به این مورد نیازی هست؟
         toast.success(
           'You have been registered successfully to the app, you can now log in',
           {
             position: toast.POSITION.BOTTOM_RIGHT,
           }
         );
-        if ('afterSuccess' in params) params.afterSuccess();
+        has(params, 'afterSuccess') && params.afterSuccess();
       },
       onErr: (err: any) => {
         toast.error(err.message, {
@@ -84,12 +93,20 @@ export const signIn: any = (params: any) => {
         dispatch(authSlice.actions.authReqStart());
       },
       onSuccess: (resData: any) => {
-        dispatch(authSlice.actions.signIn(resData));
-        storageServices.setItem('userIsLoggedIn', true);
+        dispatch(
+          authSlice.actions.signIn({
+            userData: {
+              email: params.data.email,
+            },
+            token: resData,
+          })
+        );
+        storageServices.setItem('token', resData.token);
+        storageServices.setItem('email', params.data.email);
         toast.success('You are logged in', {
           position: toast.POSITION.BOTTOM_RIGHT,
         });
-        if ('afterSuccess' in params) params.afterSuccess();
+        has(params, 'afterSuccess') && params.afterSuccess();
       },
       onErr: (err: any) => {
         toast.error(err.message, {
@@ -100,6 +117,15 @@ export const signIn: any = (params: any) => {
         dispatch(authSlice.actions.authReqEnd());
       },
     });
+  };
+};
+
+export const signOut: any = (params: any) => {
+  return (dispatch: any) => {
+    dispatch(authSlice.actions.signOut());
+    storageServices.delItem('token');
+    storageServices.delItem('email');
+    has(params, 'afterDone') && params.afterDone();
   };
 };
 

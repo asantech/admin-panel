@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import styles from './Sidebar.module.css';
 
 import * as dashboardConstants from '@/utils/constants/dashboard.constants';
 
 function Sidebar() {
+  const email: string = useSelector((state: any) => state.auth.userData.email);
+
   return (
     <div className={styles['sidebar'] + ' pt-3 px-4 position-fixed'}>
       <div className='sidebar-brand mb-4'>
@@ -13,6 +17,9 @@ function Sidebar() {
             <small className='badge bg-primary text-uppercase mx-1'>Pro</small>
           </sup>
         </span>
+      </div>
+      <div className='sidebar-user mb-5'>
+        <div className='text-white'>{email}</div>
       </div>
       <ul className='nav nav-pills flex-column mb-auto'>
         <li key='nav-items-group-header' className='nav-item mb-2'>

@@ -2,10 +2,11 @@ import apiConstants from '@/utils/constants/api.constants';
 import * as formConstants from '@/utils/constants/form.contants';
 
 export const items = Object.freeze([
-  // formConstants.controls.firstname,
-  // formConstants.controls.lastname,
+  formConstants.controls.firstname,
+  formConstants.controls.lastname,
   formConstants.controls.email,
-  // formConstants.controls.job,
+  formConstants.controls.job,
+  formConstants.controls.imgURL,
   formConstants.controls.password,
   {
     kind: 'button',

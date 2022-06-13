@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import store from '@/store/index';
 
 import * as resourcesActions from '@/store/entities/resources';
 import * as resourcesConstants from '@/utils/constants/resources.constants';
@@ -17,7 +16,7 @@ function ResourcesView() {
     loading: isLoading,
     page,
     totalPages,
-  } = useSelector(state => store.getState().resources);
+  } = useSelector((state: any) => state.resources);
 
   const navigate = useNavigate();
 

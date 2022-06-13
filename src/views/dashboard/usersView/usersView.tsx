@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import store from '@/store/index';
 
 import * as usersActions from '@/store/entities/users';
 import * as usersConstants from '@/utils/constants/users.constants';
@@ -17,7 +16,7 @@ function UsersView() {
     loading: isLoading,
     page,
     totalPages,
-  } = useSelector(state => store.getState().users);
+  } = useSelector((state: any) => state.users);
 
   const navigate = useNavigate();
 
