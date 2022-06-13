@@ -6,7 +6,7 @@ export function convertData(
   conversionDir: 'keyToVal' | 'valToKey' = 'keyToVal'
 ) {
   const convertedData: any = {};
-  console.log(data);
+
   if (conversionDir === 'keyToVal') {
     forEach(data, (val, key) => {
       if (has(dataConversionMap, key)) {
@@ -15,8 +15,6 @@ export function convertData(
     });
   } else if (conversionDir === 'valToKey') {
     forEach(dataConversionMap, (val, key) => {
-      console.log(val, key);
-
       if (has(data, val)) {
         convertedData[key] = data[val];
       }

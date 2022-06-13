@@ -19,8 +19,6 @@ function Form(props: any) {
     formHelpers.setValsOnItemsExistingProps(items, addedItemsPropsValsConfig)
   );
 
-  console.log('initialState', initialState);
-
   const [itemsVals, setItemsVals] = useState(initialState);
 
   function resetForm() {
@@ -75,7 +73,6 @@ function Form(props: any) {
   }
 
   useEffect(() => {
-    console.log(props.itemsVals);
     if (props.itemsVals) setItemsVals(props.itemsVals);
   }, []);
 

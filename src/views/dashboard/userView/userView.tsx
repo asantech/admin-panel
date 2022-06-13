@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import { has } from 'lodash';
+
 import store from '@/store/index';
 
 import Form from '@/components/forms/form/Form';
@@ -15,13 +17,15 @@ function UserView() {
   const { loading: showSpinner } = useSelector(state => store.getState().users);
   const dispatch = useDispatch();
   const { state } = location;
-  const userFormControlsVals = state
+  let userData = state
     ? generalHelpers.convertData(
         location.state,
         userConstants.dataConversionMap,
         'valToKey'
       )
     : undefined;
+
+  if (userData && !has(userData, 'job')) userData = { ...userData, job: '' };
 
   function onHandleSubmitForm({ itemsVals, resetForm }: any) {
     dispatch(
@@ -53,7 +57,7 @@ function UserView() {
             <Form
               items={userConstants.userFormControls}
               onHandleSubmit={onHandleSubmitForm}
-              itemsVals={userFormControlsVals}
+              itemsVals={userData}
             />
           </div>
         </div>
