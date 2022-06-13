@@ -1,5 +1,3 @@
-import { useImperativeHandle } from 'react';
-
 import Button from '@/components/basic/button/Button';
 
 import './Navbar.css';

@@ -1,4 +1,6 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
 
 import Card from '@/components/cards/Card';
 import CardHeader from '@/components/cards/CardHeader';
@@ -7,8 +9,21 @@ import Button from '@/components/basic/button/Button';
 import Alert from '@/components/basic/Alert/Alert';
 import Image from '@/components/content/image/Image';
 
+import * as usersActions from '@/store/entities/users';
+
+type UserData = {
+  // علت کار عدم اختصا دادن بررسی شود
+  id: string | number;
+  email: string;
+  avatar: string;
+  first_name: string;
+  last_name: string;
+};
+
 function UserProfileView() {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     id,
@@ -17,6 +32,16 @@ function UserProfileView() {
     first_name,
     last_name,
   }: any = location.state;
+
+  function delUser(id: number | string) {
+    dispatch(
+      usersActions.delUser({
+        data: {
+          id: id,
+        },
+      })
+    );
+  }
 
   return (
     <div id='user-profile-view' className='user-view'>
@@ -41,10 +66,20 @@ function UserProfileView() {
               </h3>
               <div className='mb-2 fw-bold color-939ba2'>User ID: {id}</div>
               <div>
-                <Button className='btn-sm btn-success mx-1 rounded-0'>
-                  <i className='bi bi-pencil-fill'></i>
-                </Button>
-                <Button className='btn-sm btn-danger mx-1 rounded-0'>
+                <Link
+                  className='btn-sm btn-success mx-1 px-2 pb-1 rounded-0'
+                  to={'/dashboard/user/' + id}
+                  state={location.state}
+                >
+                  <i className='bi bi-pencil-fill text-white'></i>
+                </Link>
+                <Button
+                  className='btn-sm btn-danger mx-1 rounded-0'
+                  onClickHandler={() => {
+                    delUser(id);
+                    navigate('/dashboard');
+                  }}
+                >
                   <i className='bi bi-trash-fill'></i>
                 </Button>
               </div>

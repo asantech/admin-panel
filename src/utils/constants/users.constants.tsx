@@ -8,7 +8,6 @@ import Image from '@/components/content/image/Image';
 export const baseAPIConfig = Object.freeze({
   baseURL: apiConstants.baseURL,
   url: apiConstants.urls.users,
-  method: 'get',
 });
 
 export const usersSchema = Object.freeze([

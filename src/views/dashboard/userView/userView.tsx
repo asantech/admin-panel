@@ -1,12 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-
-import { has } from 'lodash';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import store from '@/store/index';
 
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
+import Image from '@/components/content/image/Image';
 
 import * as userConstants from '@/utils/constants/user.constants';
 import * as userSlice from '@/store/entities/users';
@@ -14,46 +13,69 @@ import * as generalHelpers from '@/utils/helpers/general.helpers';
 
 function UserView() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { loading: showSpinner } = useSelector(state => store.getState().users);
   const dispatch = useDispatch();
-  const { state } = location;
+  const { state }: { state: any } = location;
   let userData = state
     ? generalHelpers.convertData(
-        location.state,
+        state,
         userConstants.dataConversionMap,
         'valToKey'
       )
     : undefined;
 
-  if (userData && !has(userData, 'job')) userData = { ...userData, job: '' };
+  userData &&
+    (userData = generalHelpers.addKeyValsIfDoesntExist(userData, { job: '' }));
 
   function onHandleSubmitForm({ itemsVals, resetForm }: any) {
+    const convertedItemsVals = generalHelpers.convertData(
+      itemsVals,
+      userConstants.dataConversionMap
+    );
+
     dispatch(
-      userSlice.addUser({
-        data: generalHelpers.convertData(
-          itemsVals,
-          userConstants.dataConversionMap
-        ),
-        afterSuccess: () => {
-          resetForm();
-          // navigate('/dashboard');
-        },
-      })
+      !state
+        ? userSlice.addUser({
+            data: convertedItemsVals,
+            afterSuccess: () => {
+              resetForm();
+              // navigate('/dashboard/users');
+            },
+          })
+        : userSlice.editUser({
+            reqParams: {
+              id: state.id,
+            },
+            data: convertedItemsVals,
+            afterSuccess: () => {
+              resetForm();
+              // navigate('/dashboard/users');
+            },
+          })
     );
   }
 
   return (
-    <div id='user-view' className='user-view p-5 h-100'>
+    <div id='user-view' className='user-view pt-0 px-5 pb-3 h-100'>
       <div className='row justify-content-md-center'>
         <div className='col-6'>
           <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>
             {(!state ? 'Add ' : 'Edit') + ' User'}
           </h1>
           <div
-            className='card pt-4 px-3 pb-4 position-relative'
+            className='card py-3 px-3 position-relative'
             style={{ maxWidth: '536px' }} // بعدا اصلاح شود
           >
             {showSpinner && <OverlayedSpinner />}
+            {state && (
+              <Image
+                className='img-thumbnail mx-auto rounded-circle'
+                src={userData.avatar}
+                alt={userData.first_name + ' \n' + userData.last_name}
+                style={{ width: '70px', height: '70px' }}
+              />
+            )}
             <Form
               items={userConstants.userFormControls}
               onHandleSubmit={onHandleSubmitForm}

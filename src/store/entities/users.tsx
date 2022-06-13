@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { has } from 'lodash';
+import { has, isUndefined } from 'lodash';
 
 import { toast } from 'react-toastify';
 
@@ -24,6 +24,13 @@ const initialState: InitialState = {
   loading: false,
 };
 
+function showErrMsg(err: any, dispatch: any) {
+  toast.error(err.message, {
+    position: toast.POSITION.BOTTOM_RIGHT,
+  });
+  dispatch(usersSlice.actions.authReqEnd());
+}
+
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -47,6 +54,7 @@ const usersSlice = createSlice({
       });
       usersState.total = usersState.users.length;
     },
+    editUser: (usersState, action) => {},
     authReqEnd: usersState => {
       usersState.loading = false;
     },
@@ -58,18 +66,14 @@ export const getUsers: any = (params: any) => {
     dispatch(usersSlice.actions.authReqStart());
     await apiServices.createAPICall({
       ...usersConstants.baseAPIConfig,
+      method: 'get',
       params: params && has(params, 'reqParams') ? params.reqParams : undefined,
       onSuccess: (resData: any) => {
         dispatch(usersSlice.actions.setUsers(resData));
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        dispatch(usersSlice.actions.authReqEnd());
-      },
+      onErr: (err: any) => showErrMsg(err, dispatch),
     });
   };
 };
@@ -87,35 +91,59 @@ export const addUser: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        dispatch(usersSlice.actions.authReqEnd());
-      },
+      onErr: (err: any) => showErrMsg(err, dispatch),
     });
   };
 };
 
 export const delUser: any = (params: any) => {
-  return async (dispatch: any) => {
+  return async (dispatch: any, getState: any) => {
     dispatch(usersSlice.actions.authReqStart());
+
+    const selectedUser = getState().users.users.find((userData: any) => {
+      return userData.id === params.data.id;
+    });
+
+    if (isUndefined(selectedUser)) {
+      showErrMsg(
+        { message: "this user isn't in the users list with this id" },
+        dispatch
+      );
+      return;
+    }
 
     await apiServices.createAPICall({
       ...userConstants.baseAPIConfig,
       method: 'delete',
       params: params && params.reqParams,
-      onSuccess: (resData: any) => {
+      data: params.data,
+      onSuccess: () => {
         dispatch(usersSlice.actions.delUser(params.data));
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
+      onErr: (err: any) => showErrMsg(err, dispatch),
+    });
+  };
+};
+
+export const editUser: any = (params: any) => {
+  return async (dispatch: any) => {
+    dispatch(usersSlice.actions.authReqStart());
+
+    await apiServices.createAPICall({
+      ...userConstants.baseAPIConfig,
+      method: 'put',
+      params: params && params.reqParams,
+      data: params.data,
+      onSuccess: (resData: any) => {
+        dispatch(
+          usersSlice.actions.editUser({ ...params.reqParams, ...params.data })
+        );
+        if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
+      onErr: (err: any) => showErrMsg(err, dispatch),
     });
   };
 };

@@ -1,4 +1,4 @@
-import { forEach, has } from 'lodash';
+import { forEach, has, toPairs } from 'lodash';
 
 export function convertData(
   data: any,
@@ -21,4 +21,12 @@ export function convertData(
     });
   }
   return convertedData;
+}
+
+export function addKeyValsIfDoesntExist(obj: any, keyValsMap: any) {
+  const newObj = { ...obj };
+  toPairs(keyValsMap).forEach(([key, val]) => {
+    if (!has(newObj, key)) newObj[key] = val;
+  });
+  return newObj;
 }

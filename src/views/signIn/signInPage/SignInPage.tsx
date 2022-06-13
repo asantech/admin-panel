@@ -6,6 +6,7 @@ import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 
 import Card from '@/components/cards/Card';
+import CardBody from '@/components/cards/CardBody';
 
 import * as signInConstants from '@/utils/constants/signIn.constants';
 import * as authSlice from '@/store/authentication/auth';
@@ -38,11 +39,13 @@ function SignInPage() {
             Sign In in to the admin panel
           </h1>
           <Card className='pt-4 px-3 pb-4 position-relative max-width-576px'>
-            {showSpinner && <OverlayedSpinner />}
-            <Form
-              items={signInConstants.items}
-              onHandleSubmit={onHandleSubmitForm}
-            />
+            <CardBody>
+              {showSpinner && <OverlayedSpinner />}
+              <Form
+                items={signInConstants.items}
+                onHandleSubmit={onHandleSubmitForm}
+              />
+            </CardBody>
           </Card>
         </div>
       </div>
