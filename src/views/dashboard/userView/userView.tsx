@@ -51,7 +51,7 @@ function UserView() {
           </h1>
           <div
             className='card pt-4 px-3 pb-4 position-relative'
-            style={{ maxWidth: '576px' }} // بعدا اصلاح شود
+            style={{ maxWidth: '536px' }} // بعدا اصلاح شود
           >
             {showSpinner && <OverlayedSpinner />}
             <Form

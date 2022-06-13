@@ -1,12 +1,17 @@
+import { useImperativeHandle } from 'react';
+
 import Button from '@/components/basic/button/Button';
 
 import './Navbar.css';
 
-function Navbar() {
+function Navbar(props: any) {
   return (
     <nav className='top-navbar navbar navbar-light px-3'>
       <div className='container-fluid'>
-        <Button className='navbar-toggler'>
+        <Button
+          className='navbar-toggler'
+          onClickHandler={props.togglerBtnOnClickHandler}
+        >
           <span className='navbar-toggler-icon'></span>
         </Button>
         <Button>
