@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 import * as signUpConstants from '@/utils/constants/signUp.constants';
 import * as signInConstants from '@/utils/constants/signIn.constants';
+import msgsConstants from '@/utils/constants/msgs.constants';
 
 import * as apiServices from '@/services/api/api.service';
 import * as storageServices from '@/services/storage/storage.service';
@@ -15,6 +16,7 @@ type InitialState = {
   loading: boolean;
   token: null | string;
   userIsLoggedIn: boolean;
+  loggedInMsgDisplay: boolean;
 };
 
 const initialState: InitialState = {
@@ -22,6 +24,7 @@ const initialState: InitialState = {
   loading: false,
   token: null,
   userIsLoggedIn: false,
+  loggedInMsgDisplay: false,
 };
 
 const authSlice = createSlice({
@@ -30,10 +33,6 @@ const authSlice = createSlice({
   reducers: {
     authReqStart: authState => {
       authState.loading = true;
-    },
-    registerUserData: authState => {
-      // بعدا برداشته شود
-      // authState.loading = false; // نیاز به این مورد بررسی شود
     },
     signIn: (
       authState,
@@ -45,6 +44,9 @@ const authSlice = createSlice({
       authState.userData = action.payload.userData;
       authState.token = action.payload.token;
       authState.userIsLoggedIn = true;
+    },
+    showLoggedInMsg: authState => {
+      authState.loggedInMsgDisplay = true;
     },
     signOut: authState => {
       authState.userIsLoggedIn = false;
@@ -66,14 +68,9 @@ export const signUp: any = (params: any) => {
         dispatch(authSlice.actions.authReqStart());
       },
       onSuccess: () => {
-        dispatch(authSlice.actions.registerUserData());
-        storageServices.setItem('userIsSignedUp', 'true'); // آیا به این مورد نیازی هست؟
-        toast.success(
-          'You have been registered successfully to the app, you can now log in',
-          {
-            position: toast.POSITION.BOTTOM_RIGHT,
-          }
-        );
+        toast.success(msgsConstants.auth.signUpSuccessMsg, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         has(params, 'afterSuccess') && params.afterSuccess();
       },
       onErr: (err: any) => {
@@ -105,11 +102,9 @@ export const signIn: any = (params: any) => {
             token: resData,
           })
         );
+        dispatch(authSlice.actions.showLoggedInMsg());
         storageServices.setItem('token', resData.token);
         storageServices.setItem('email', params.data.email);
-        toast.success('You are logged in', {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
         has(params, 'afterSuccess') && params.afterSuccess();
       },
       onErr: (err: any) => {

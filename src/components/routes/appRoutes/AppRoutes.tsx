@@ -7,8 +7,6 @@ import SignInPage from '@/views/signIn/signInPage/SignInPage';
 import DashboardPage from '@/views/dashboard/dashboardPage/DashboardPage';
 import NotFoundView from '@/views/errMsgs/notFound/NotFoundView';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 function AppRoutes() {
   const isLoggedIn = useSelector((state: any) => state.auth.userIsLoggedIn);
 

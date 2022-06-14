@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import * as usersConstants from '@/utils/constants/users.constants';
 import * as userConstants from '@/utils/constants/user.constants';
+import msgsConstants from '@/utils/constants/msgs.constants';
 
 import * as apiServices from '@/services/api/api.service';
 
@@ -106,7 +107,7 @@ export const delUser: any = (params: any) => {
 
     if (isUndefined(selectedUser)) {
       showErrMsg(
-        { message: "this user isn't in the users list with this id" },
+        { message: msgsConstants.users.delUnexistingUserErrMsg },
         dispatch
       );
       return;
