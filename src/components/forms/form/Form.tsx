@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { find, isEmpty, has } from 'lodash';
 
 import * as formHelpers from '@/utils/helpers/form.helpers';
-import { items } from './../../../utils/constants/signUp.constants';
 
 function Form(props: any) {
   let { items } = props;

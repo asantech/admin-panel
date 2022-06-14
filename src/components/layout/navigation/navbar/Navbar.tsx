@@ -15,7 +15,7 @@ function Navbar(props: any) {
     dispatch(
       authActions.signOut({
         afterDone: () => {
-          navigate('/sign-up');
+          navigate('/sign-in');
         },
       })
     );

@@ -9,6 +9,8 @@ import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 import Table from '@/components/content/table/Table';
 import Pagination from '@/components/layout/navigation/pagination/Pagination';
 
+import './ResourcesView.css';
+
 function ResourcesView() {
   const dispatch = useDispatch();
   const {
@@ -43,14 +45,7 @@ function ResourcesView() {
   return (
     <div id='resources-view' className='resource-view'>
       <h1 className='h3 mb-3'>Resources</h1>
-      <div
-        className='content position-relative overflow-auto px-2 mb-3'
-        style={{
-          minHeight: '300px',
-          maxHeight: '390px',
-          scrollbarWidth: 'thin',
-        }}
-      >
+      <div className='table-content-segment content position-relative overflow-auto px-2 mb-3'>
         {isLoading && <OverlayedSpinner />}
         <Table
           className='table-striped table-hover align-middle'

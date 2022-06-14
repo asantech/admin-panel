@@ -14,12 +14,14 @@ type InitialState = {
   userData: any;
   loading: boolean;
   token: null | string;
+  userIsLoggedIn: boolean;
 };
 
 const initialState: InitialState = {
   userData: {},
   loading: false,
   token: null,
+  userIsLoggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -42,8 +44,10 @@ const authSlice = createSlice({
     ) => {
       authState.userData = action.payload.userData;
       authState.token = action.payload.token;
+      authState.userIsLoggedIn = true;
     },
     signOut: authState => {
+      authState.userIsLoggedIn = false;
       authState.userData = {};
       authState.token = null;
     },
@@ -126,6 +130,12 @@ export const signOut: any = (params: any) => {
     storageServices.delItem('token');
     storageServices.delItem('email');
     has(params, 'afterDone') && params.afterDone();
+  };
+};
+
+export const setSignedIn: any = (params: any) => {
+  return async (dispatch: any) => {
+    dispatch(authSlice.actions.signIn(params));
   };
 };
 

@@ -1,0 +1,5 @@
+#resources-view .table-content-segment {
+  min-height: 300px;
+  max-height: 390px;
+  scrollbar-width: 'thin';
+}
