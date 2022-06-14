@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { toast } from 'react-toastify';
+
 import apiConstants from '@/utils/constants/api.constants';
 
 export const createAPICall = async (apiConfig: any) => {
@@ -22,4 +24,11 @@ export const createAPICall = async (apiConfig: any) => {
     if (onErr) onErr(err);
     if (onEnd) onEnd();
   }
+};
+
+export const showErrMsg = (errMsg: string, afterErr: any) => {
+  toast.error(errMsg, {
+    position: toast.POSITION.BOTTOM_RIGHT,
+  });
+  afterErr && afterErr();
 };

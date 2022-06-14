@@ -42,9 +42,6 @@ function UserView() {
             },
           })
         : userSlice.editUser({
-            reqParams: {
-              id: state.id,
-            },
             data: convertedItemsVals,
             afterSuccess: () => {
               resetForm();

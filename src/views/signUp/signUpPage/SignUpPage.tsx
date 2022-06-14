@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
@@ -32,6 +32,13 @@ function SignUpPage() {
 
   return (
     <div id='sign-up-page' className='sign-up-page p-5 h-100'>
+      <Link
+        to='/sign-in'
+        className='position-absolute'
+        style={{ top: '30px', right: '50px' }}
+      >
+        <i className='bi bi-person-circle fs-1 text-primary'></i>
+      </Link>
       <div className='row justify-content-md-center'>
         <div className='col-5'>
           <h1 className='h4 mb-4 mx-auto' style={{ width: 'max-content' }}>

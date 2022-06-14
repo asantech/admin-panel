@@ -17,11 +17,5 @@ export const resourcesSchema = Object.freeze([
   { path: 'pantone_value', lbl: 'Pantone' },
   {
     path: 'actions',
-    content: () => (
-      <>
-        <i className='bi bi-pencil-fill text-success mx-2'></i>
-        <i className='bi bi-trash-fill text-danger'></i>
-      </>
-    ),
   },
 ]);

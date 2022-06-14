@@ -17,7 +17,11 @@ function AppRoutes() {
     <Routes>
       <Route
         path='/'
-        element={renderComponent(!isLoggedIn, '/sign-in', <DashboardPage />)}
+        element={renderComponent(
+          !isLoggedIn,
+          '/sign-in',
+          <Navigate to='/dashboard' />
+        )}
       />
       <Route
         path='/sign-up'

@@ -55,7 +55,16 @@ const usersSlice = createSlice({
       });
       usersState.total = usersState.users.length;
     },
-    editUser: (usersState, action) => {},
+    editUser: (usersState, action) => {
+      usersState.users = usersState.users.map((user: any) => {
+        console.log(action.payload.id, user.id);
+        if (action.payload.id === user.id) {
+          return action.payload;
+        }
+        return user;
+      });
+      console.log(action.payload);
+    },
     authReqEnd: usersState => {
       usersState.loading = false;
     },
@@ -134,13 +143,11 @@ export const editUser: any = (params: any) => {
 
     await apiServices.createAPICall({
       ...userConstants.baseAPIConfig,
+      url: userConstants.baseAPIConfig.url + '/' + params.data.id,
       method: 'put',
-      params: params && params.reqParams,
       data: params.data,
-      onSuccess: (resData: any) => {
-        dispatch(
-          usersSlice.actions.editUser({ ...params.reqParams, ...params.data })
-        );
+      onSuccess: () => {
+        dispatch(usersSlice.actions.editUser(params.data));
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },

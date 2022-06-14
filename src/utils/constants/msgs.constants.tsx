@@ -5,6 +5,6 @@ export default Object.freeze({
     signInSuccessMsg: 'You are logged in',
   },
   users: {
-    delUnexistingUserErrMsg: "this user isn't in the users list with this id",
+    delUnexistingUserErrMsg: "This user isn't in the users list with this id",
   },
 });

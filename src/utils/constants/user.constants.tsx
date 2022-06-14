@@ -23,7 +23,7 @@ export const userFormControls = Object.freeze([
 ]);
 
 export const dataConversionMap = Object.freeze({
-  // id: 'id',
+  id: 'id',
   firstname: 'first_name',
   lastname: 'last_name',
   avatar: 'avatar',

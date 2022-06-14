@@ -1,6 +1,7 @@
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
+import { map } from 'lodash';
 
 import Card from '@/components/cards/Card';
 import CardHeader from '@/components/cards/CardHeader';
@@ -10,6 +11,9 @@ import Alert from '@/components/basic/Alert/Alert';
 import Image from '@/components/content/image/Image';
 
 import * as usersActions from '@/store/entities/users';
+import * as generalHelpers from '@/utils/helpers/general.helpers';
+
+import * as userConstants from '@/utils/constants/user.constants';
 
 type UserData = {
   // علت کار عدم اختصا دادن بررسی شود
@@ -21,7 +25,7 @@ type UserData = {
 };
 
 function UserProfileView() {
-  const location = useLocation();
+  const { state }: { state: any } = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +35,7 @@ function UserProfileView() {
     avatar: profileImgURL,
     first_name,
     last_name,
-  }: any = location.state;
+  }: any = state;
 
   function delUser(id: number | string) {
     dispatch(
@@ -66,13 +70,16 @@ function UserProfileView() {
               </h3>
               <div className='mb-2 fw-bold color-939ba2'>User ID: {id}</div>
               <div>
-                <Link
-                  className='btn-sm btn-success mx-1 px-2 pb-1 rounded-0'
-                  to={'/dashboard/user/' + id}
-                  state={location.state}
+                <Button
+                  className='btn-sm btn-success mx-1 rounded-0'
+                  onClickHandler={() => {
+                    navigate('/dashboard/user/' + id, {
+                      state,
+                    });
+                  }}
                 >
                   <i className='bi bi-pencil-fill text-white'></i>
-                </Link>
+                </Button>
                 <Button
                   className='btn-sm btn-danger mx-1 rounded-0'
                   onClickHandler={() => {
@@ -102,15 +109,19 @@ function UserProfileView() {
                 About
               </h4>
               <ul className='list-unstyled mb-0'>
-                <li className='mb-1'>
-                  Lives in <a href='#'>San Francisco, SA</a>
-                </li>
-                <li className='mb-1'>
-                  Works at <a href='#'>GitHub</a>
-                </li>
-                <li className='mb-1'>
-                  From <a href='#'>Boston</a>
-                </li>
+                {map(
+                  generalHelpers.convertData(
+                    state,
+                    userConstants.dataConversionMap,
+                    'valToKey'
+                  ),
+                  (val: any, key) => (
+                    <li key={key} className='mb-1' style={{ color: '#495057' }}>
+                      <span className='fw-bold'>{key}: </span>
+                      {val}
+                    </li>
+                  )
+                )}
               </ul>
             </CardBody>
             <hr className='my-0' />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Sidebar from '@/components/layout/sidebar/Sidebar';
 import Navbar from '@/components/layout/navigation/navbar/Navbar';
-import DashboardRoutes from '@/components/routes/appRoutes/DashboardRoutes';
+import DashboardRoutes from '@/components/routing/dashboardRoute/DashboardRoutes';
 
 import Footer from '@/components/layout/footer/Footer';
 

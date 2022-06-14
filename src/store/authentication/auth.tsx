@@ -73,11 +73,10 @@ export const signUp: any = (params: any) => {
         });
         has(params, 'afterSuccess') && params.afterSuccess();
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      },
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.response.data.error, () => {
+          dispatch(authSlice.actions.authReqEnd());
+        }),
       onEnd: () => {
         dispatch(authSlice.actions.authReqEnd());
       },
@@ -107,11 +106,10 @@ export const signIn: any = (params: any) => {
         storageServices.setItem('email', params.data.email);
         has(params, 'afterSuccess') && params.afterSuccess();
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-      },
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.response.data.error, () => {
+          dispatch(authSlice.actions.authReqEnd());
+        }),
       onEnd: () => {
         dispatch(authSlice.actions.authReqEnd());
       },

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 import * as resourcesActions from '@/store/entities/resources';
 import * as resourcesConstants from '@/utils/constants/resources.constants';
@@ -39,7 +40,7 @@ function ResourcesView() {
   }
 
   useEffect(() => {
-    dispatch(resourcesActions.getResources());
+    if (isEmpty(resources)) dispatch(resourcesActions.getResources());
   }, []);
 
   return (
@@ -51,7 +52,7 @@ function ResourcesView() {
           className='table-striped table-hover align-middle'
           cols={resourcesConstants.resourcesSchema}
           data={resources}
-          rowOnClick={(data: any) => goToReourceInfoPage(data)}
+          rowOnClick={(e: any, data: any) => goToReourceInfoPage(data)}
         />
       </div>
       <Pagination

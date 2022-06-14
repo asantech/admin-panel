@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 
-import AppRoutes from '@/components/routes/appRoutes/AppRoutes';
+import AppRoutes from '@/components/routing/appRoute/AppRoutes';
 
 function App() {
   const dispatch = useDispatch();

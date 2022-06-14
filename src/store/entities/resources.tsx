@@ -23,6 +23,13 @@ const initialState: InitialState = {
   loading: false,
 };
 
+function showErrMsg(err: any, dispatch: any) {
+  toast.error(err.message, {
+    position: toast.POSITION.BOTTOM_RIGHT,
+  });
+  dispatch(resourcesSlice.actions.authReqEnd());
+}
+
 const resourcesSlice = createSlice({
   name: 'resources',
   initialState,
@@ -53,12 +60,7 @@ export const getResources: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(resourcesSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => {
-        toast.error(err.message, {
-          position: toast.POSITION.BOTTOM_RIGHT,
-        });
-        dispatch(resourcesSlice.actions.authReqEnd());
-      },
+      onErr: (err: any) => showErrMsg(err, dispatch),
     });
   };
 };
