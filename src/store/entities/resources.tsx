@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { has } from 'lodash';
 
+import { toast } from 'react-toastify';
+
 import * as resourcesConstants from '@/utils/constants/resources.constants';
+import msgsConstants from '@/utils/constants/msgs.constants';
 
 import * as apiServices from '@/services/api/api.service';
 
@@ -48,6 +51,10 @@ export const getResources: any = (params: any) => {
       params: params && has(params, 'reqParams') ? params.reqParams : undefined,
       onSuccess: (resData: any) => {
         dispatch(resourcesSlice.actions.setResources(resData));
+        if (params && params.showSuccessToast !== false)
+          toast.success(msgsConstants.resources.resourcesLoaded, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(resourcesSlice.actions.authReqEnd());
       },

@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 import { has, isUndefined } from 'lodash';
+
+import { toast } from 'react-toastify';
 
 import * as usersConstants from '@/utils/constants/users.constants';
 import * as userConstants from '@/utils/constants/user.constants';
@@ -69,6 +72,10 @@ export const getUsers: any = (params: any) => {
       params: params && has(params, 'reqParams') ? params.reqParams : undefined,
       onSuccess: (resData: any) => {
         dispatch(usersSlice.actions.setUsers(resData));
+        if (params && params.showSuccessToast !== false)
+          toast.success(msgsConstants.users.usersLoaded, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
@@ -90,6 +97,9 @@ export const addUser: any = (params: any) => {
       data: params.data,
       onSuccess: (resData: any) => {
         dispatch(usersSlice.actions.addUser({ ...resData, ...params.data }));
+        toast.success(msgsConstants.users.userAdded, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
@@ -126,6 +136,9 @@ export const delUser: any = (params: any) => {
       data: params.data,
       onSuccess: () => {
         dispatch(usersSlice.actions.delUser(params.data));
+        toast.success(msgsConstants.users.userDeleted, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
@@ -148,6 +161,9 @@ export const editUser: any = (params: any) => {
       data: params.data,
       onSuccess: () => {
         dispatch(usersSlice.actions.editUser(params.data));
+        toast.success(msgsConstants.users.userEdited, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },

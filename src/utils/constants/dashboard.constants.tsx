@@ -41,5 +41,5 @@ export const navLinks = Object.freeze([
 ]);
 
 export const config = Object.freeze({
-  loggedInMsgRemovalDelay: 3000,
+  loggedInMsgRemovalDelay: 4000,
 });

@@ -36,7 +36,9 @@ function MainView() {
                   <i className='bi bi-people-fill' /> Users Info
                 </>
               }
-              loadDataAction={usersActions.getUsers}
+              loadDataAction={() =>
+                usersActions.getUsers({ showSuccessToast: false })
+              }
               itemsKey='users'
             ></EntityInfoCard>
           </div>
@@ -47,7 +49,9 @@ function MainView() {
                   <i className='bi bi-card-list' /> Resources Info
                 </>
               }
-              loadDataAction={resourcesActions.getResources}
+              loadDataAction={() =>
+                resourcesActions.getResources({ showSuccessToast: false })
+              }
               itemsKey='resources'
             ></EntityInfoCard>
           </div>

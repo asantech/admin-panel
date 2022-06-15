@@ -6,10 +6,17 @@ export default Object.freeze({
   },
   users: {
     delUnexistingUserErrMsg: "This user isn't in the users list with this id",
+    usersLoaded: 'The users are loaded successfully',
+    userAdded: 'The user is added successfully',
+    userDeleted: 'The user is deleted successfully',
+    userEdited: 'The user is edited successfully',
   },
   errs: {
-    unexpectedErr: 'unexpected error',
+    unexpectedErr: 'Unexpected error',
     unexpectedErrIsLogged:
-      'unexpected error has occured, it is logged in the console.',
+      'Unexpected error has occured, it is logged in the console.',
+  },
+  resources: {
+    resourcesLoaded: 'The resoucers are loaded successfully.',
   },
 });

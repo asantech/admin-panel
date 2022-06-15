@@ -73,7 +73,7 @@ function Form(props: any) {
 
   useEffect(() => {
     if (props.itemsVals) setItemsVals(props.itemsVals);
-  }, [props.itemsVals]);
+  }, []);
 
   return (
     <form onSubmit={handleFormSubmit}>
