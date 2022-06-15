@@ -3,11 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { map } from 'lodash';
 
-import Card from '@/components/cards/Card';
-import CardHeader from '@/components/cards/CardHeader';
-import CardBody from '@/components/cards/CardBody';
+import Card from '@/components/basic/cards/Card';
+import CardHeader from '@/components/basic/cards/CardHeader';
+import CardBody from '@/components/basic/cards/CardBody';
 import Button from '@/components/basic/button/Button';
-import Alert from '@/components/basic/Alert/Alert';
+import Alert from '@/components/basic/alert/Alert';
 import Image from '@/components/content/image/Image';
 
 import * as usersActions from '@/store/entities/users';

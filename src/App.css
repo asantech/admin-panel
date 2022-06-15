@@ -6,6 +6,19 @@
   color: #ced4da;
 }
 
+.color-#e9ecef80 {
+  color: #e9ecef80;
+}
+
 .cursor-pointer {
   cursor: pointer;
+}
+
+.nav-link span {
+  font-size: 15px;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #f5f5f5;
 }

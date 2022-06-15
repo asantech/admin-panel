@@ -7,8 +7,11 @@ import * as usersActions from '@/store/entities/users';
 import * as resourcesActions from '@/store/entities/resources';
 
 import msgsConstants from '@/utils/constants/msgs.constants';
+import * as dashboardConstants from '@/utils/constants/dashboard.constants';
 
-import Alert from '@/components/basic/Alert/Alert';
+import Accordion from '@/components/basic/accordion/Accordion';
+
+import Alert from '@/components/basic/alert/Alert';
 
 function MainView() {
   const loggedInMsgDisplay = useSelector(

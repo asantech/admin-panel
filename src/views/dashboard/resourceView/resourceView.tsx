@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import { map } from 'lodash';
 
-import Card from '@/components/cards/Card';
-import CardBody from '@/components/cards/CardBody';
+import Card from '@/components/basic/cards/Card';
+import CardBody from '@/components/basic/cards/CardBody';
 
 function ResourceView() {
   const location = useLocation();

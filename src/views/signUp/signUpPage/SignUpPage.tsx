@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import Form from '@/components/forms/form/Form';
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 
-import Card from '@/components/cards/Card';
+import Card from '@/components/basic/cards/Card';
 
 import * as signUpConstants from '@/utils/constants/signUp.constants';
 import * as authSlice from '@/store/authentication/auth';

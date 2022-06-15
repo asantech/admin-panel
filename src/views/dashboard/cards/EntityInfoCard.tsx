@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import Card from '@/components/cards/Card';
-import CardHeader from '@/components/cards/CardHeader';
-import CardBody from '@/components/cards/CardBody';
+import Card from '@/components/basic/cards/Card';
+import CardHeader from '@/components/basic/cards/CardHeader';
+import CardBody from '@/components/basic/cards/CardBody';
 
 function EntityInfoCard(props: any) {
   const dispatch = useDispatch();
