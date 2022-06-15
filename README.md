@@ -18,7 +18,6 @@ Note: "React Bootstrap" is not installed and not used purposely, for better prac
 ### Typescript:
 
 1. Type aliases are used.
-2. array type annotation is used in both ways
 
 ### Redux + Redux Toolkit:
 
