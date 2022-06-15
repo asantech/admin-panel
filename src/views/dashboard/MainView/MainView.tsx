@@ -9,8 +9,6 @@ import * as resourcesActions from '@/store/entities/resources';
 import msgsConstants from '@/utils/constants/msgs.constants';
 import * as dashboardConstants from '@/utils/constants/dashboard.constants';
 
-import Accordion from '@/components/basic/accordion/Accordion';
-
 import Alert from '@/components/basic/alert/Alert';
 
 function MainView() {
@@ -23,7 +21,7 @@ function MainView() {
     if (showLoggedInMsg === true) {
       setTimeout(() => {
         setShowLoggedInMsg(false);
-      }, 3000);
+      }, dashboardConstants.config.loggedInMsgRemovalDelay);
     }
   }, [showLoggedInMsg]);
 
@@ -35,7 +33,7 @@ function MainView() {
             <EntityInfoCard
               headerContent={
                 <>
-                  <i className='bi bi-people-fill'></i> Users Info
+                  <i className='bi bi-people-fill' /> Users Info
                 </>
               }
               loadDataAction={usersActions.getUsers}
@@ -46,7 +44,7 @@ function MainView() {
             <EntityInfoCard
               headerContent={
                 <>
-                  <i className='bi bi-card-list'></i> Resources Info
+                  <i className='bi bi-card-list' /> Resources Info
                 </>
               }
               loadDataAction={resourcesActions.getResources}

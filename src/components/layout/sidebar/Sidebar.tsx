@@ -27,19 +27,15 @@ function Sidebar() {
       <div className='sidebar-user mb-5'>
         <div className='text-white'>{email}</div>
       </div>
-      {/* <ul className='nav nav-pills flex-column mb-auto'>
-        <li key='nav-items-group-header' className='nav-item mb-2'>
-          <div className='color-ced4da mb-2'>Pages</div>
-        </li>
-        {dashboardConstants.navLinks.map((navLink, i: number) => (
-          <li key={i} className='nav-item'>
-            <Link to={navLink.path} className='nav-link color-ced4da p-0 mb-3'>
-              {navLink.children}
-            </Link>
-          </li>
-        ))}
-      </ul> */}
-      <Accordion items={dashboardConstants.navLinks}></Accordion>
+      <div>
+        <div className='color-ced4da mb-1' style={{ fontSize: '13px' }}>
+          Pages
+        </div>
+      </div>
+      <Accordion
+        items={dashboardConstants.navLinks}
+        className='px-1'
+      ></Accordion>
     </div>
   );
 }

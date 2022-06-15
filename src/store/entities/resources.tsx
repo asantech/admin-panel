@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { has } from 'lodash';
 
-import { toast } from 'react-toastify';
-
 import * as resourcesConstants from '@/utils/constants/resources.constants';
 
 import * as apiServices from '@/services/api/api.service';
@@ -22,13 +20,6 @@ const initialState: InitialState = {
   totalPages: 0,
   loading: false,
 };
-
-function showErrMsg(err: any, dispatch: any) {
-  toast.error(err.message, {
-    position: toast.POSITION.BOTTOM_RIGHT,
-  });
-  dispatch(resourcesSlice.actions.authReqEnd());
-}
 
 const resourcesSlice = createSlice({
   name: 'resources',
@@ -60,7 +51,10 @@ export const getResources: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(resourcesSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => showErrMsg(err, dispatch),
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.message, () => {
+          dispatch(resourcesSlice.actions.authReqEnd());
+        }),
     });
   };
 };

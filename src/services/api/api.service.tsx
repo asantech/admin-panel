@@ -3,6 +3,21 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import apiConstants from '@/utils/constants/api.constants';
+import msgsConstants from '@/utils/constants/msgs.constants';
+
+axios.interceptors.response.use(undefined, error => {
+  const expectedError =
+    error.response &&
+    error.response.status >= 400 &&
+    error.response.status < 500;
+
+  if (!expectedError) {
+    console.log(msgsConstants.errs.unexpectedErr, error);
+    toast.error(msgsConstants.errs.unexpectedErrIsLogged);
+  }
+
+  return Promise.reject(error);
+});
 
 export const createAPICall = async (apiConfig: any) => {
   const { url, method, params, data, onStart, onSuccess, onErr, onEnd } =
@@ -26,8 +41,8 @@ export const createAPICall = async (apiConfig: any) => {
   }
 };
 
-export const showErrMsg = (errMsg: string, afterErr: any) => {
-  toast.error(errMsg, {
+export const showErrMsg = (errMsg: string | undefined, afterErr: any) => {
+  toast.error(errMsg ?? '', {
     position: toast.POSITION.BOTTOM_RIGHT,
   });
   afterErr && afterErr();

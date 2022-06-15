@@ -12,9 +12,10 @@ import * as generalHelpers from '@/utils/helpers/general.helpers';
 function UserView() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { loading: showSpinner } = useSelector((state: any) => state.users);
   const dispatch = useDispatch();
-  const { state }: { state: any } = location;
+
+  const { loading: showSpinner } = useSelector((state: any) => state.users);
+  let { state }: { state: any } = location;
   let userData = state
     ? generalHelpers.convertData(
         state,
@@ -38,14 +39,14 @@ function UserView() {
             data: convertedItemsVals,
             afterSuccess: () => {
               resetForm();
-              // navigate('/dashboard/users');
+              navigate('/dashboard/users');
             },
           })
         : userSlice.editUser({
             data: convertedItemsVals,
             afterSuccess: () => {
               resetForm();
-              // navigate('/dashboard/users');
+              navigate('/dashboard/users');
             },
           })
     );
@@ -60,7 +61,7 @@ function UserView() {
           </h1>
           <div
             className='card py-3 px-3 position-relative'
-            style={{ maxWidth: '536px' }} // بعدا اصلاح شود
+            style={{ maxWidth: '536px' }} // بعدا برداشته شود
           >
             {showSpinner && <OverlayedSpinner />}
             {state && (

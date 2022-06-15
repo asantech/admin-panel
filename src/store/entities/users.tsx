@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { has, isUndefined } from 'lodash';
 
-import { toast } from 'react-toastify';
-
 import * as usersConstants from '@/utils/constants/users.constants';
 import * as userConstants from '@/utils/constants/user.constants';
 import msgsConstants from '@/utils/constants/msgs.constants';
@@ -24,13 +22,6 @@ const initialState: InitialState = {
   totalPages: 0,
   loading: false,
 };
-
-function showErrMsg(err: any, dispatch: any) {
-  toast.error(err.message, {
-    position: toast.POSITION.BOTTOM_RIGHT,
-  });
-  dispatch(usersSlice.actions.authReqEnd());
-}
 
 const usersSlice = createSlice({
   name: 'users',
@@ -57,13 +48,11 @@ const usersSlice = createSlice({
     },
     editUser: (usersState, action) => {
       usersState.users = usersState.users.map((user: any) => {
-        console.log(action.payload.id, user.id);
         if (action.payload.id === user.id) {
           return action.payload;
         }
         return user;
       });
-      console.log(action.payload);
     },
     authReqEnd: usersState => {
       usersState.loading = false;
@@ -83,7 +72,10 @@ export const getUsers: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => showErrMsg(err, dispatch),
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.message, () => {
+          dispatch(usersSlice.actions.authReqEnd());
+        }),
     });
   };
 };
@@ -101,7 +93,10 @@ export const addUser: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => showErrMsg(err, dispatch),
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.message, () => {
+          dispatch(usersSlice.actions.authReqEnd());
+        }),
     });
   };
 };
@@ -115,9 +110,11 @@ export const delUser: any = (params: any) => {
     });
 
     if (isUndefined(selectedUser)) {
-      showErrMsg(
-        { message: msgsConstants.users.delUnexistingUserErrMsg },
-        dispatch
+      apiServices.showErrMsg(
+        msgsConstants.users.delUnexistingUserErrMsg,
+        () => {
+          dispatch(usersSlice.actions.authReqEnd());
+        }
       );
       return;
     }
@@ -132,7 +129,10 @@ export const delUser: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => showErrMsg(err, dispatch),
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.message, () => {
+          dispatch(usersSlice.actions.authReqEnd());
+        }),
     });
   };
 };
@@ -151,7 +151,10 @@ export const editUser: any = (params: any) => {
         if (params && has(params, 'afterSuccess')) params.afterSuccess();
         dispatch(usersSlice.actions.authReqEnd());
       },
-      onErr: (err: any) => showErrMsg(err, dispatch),
+      onErr: (err: any) =>
+        apiServices.showErrMsg(err.message, () => {
+          dispatch(usersSlice.actions.authReqEnd());
+        }),
     });
   };
 };

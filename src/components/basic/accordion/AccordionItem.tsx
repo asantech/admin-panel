@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import './AccordionItem.css';
-
 function AccordionItem(props: any) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +33,7 @@ function AccordionItem(props: any) {
         className={'accordion-collapse' + (isOpen ? '' : ' collapse')}
         aria-labelledby={'headingOne-' + props.id}
       >
-        <div className='accordion-body py-2 px-0 border-0'>
+        <div className='accordion-body py-2 px-2 border-0'>
           {props.children}
         </div>
       </div>

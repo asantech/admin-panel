@@ -10,7 +10,11 @@ import NotFoundView from '@/views/errMsgs/notFound/NotFoundView';
 function AppRoutes() {
   const isLoggedIn = useSelector((state: any) => state.auth.userIsLoggedIn);
 
-  const renderComponent = (condition: any, path: string, Component: any) => {
+  const renderComponent = (
+    condition: boolean,
+    path: string,
+    Component: any
+  ) => {
     return condition ? <Navigate to={path} /> : Component;
   };
   return (

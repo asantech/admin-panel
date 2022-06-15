@@ -1,8 +1,8 @@
 type Image = {
-  className: string;
+  className?: string;
   src: string;
   alt: string;
-  style: any;
+  style?: any;
 };
 
 function Image(props: Image) {
