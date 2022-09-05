@@ -8,7 +8,7 @@ import * as resourcesConstants from '@/utils/constants/resources.constants';
 
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 import Table from '@/components/content/table/Table';
-import Pagination from '@/components/layout/navigation/pagination/Pagination';
+import Pagination from '@/components/layout/navigation/Pagination/PaginatedItems';
 
 import './ResourcesView.css';
 
