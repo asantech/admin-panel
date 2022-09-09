@@ -10,6 +10,7 @@ import * as apiServices from '@/services/API/API.service';
 
 type InitialState = {
   resources: [];
+  perPage: number;
   total: number;
   page: number;
   totalPages: number;
@@ -18,6 +19,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   resources: [],
+  perPage: 0,
   total: 0,
   page: 0,
   totalPages: 0,
@@ -33,6 +35,7 @@ const resourcesSlice = createSlice({
     },
     setResources: (resourcesState, action) => {
       resourcesState.resources = action.payload.data;
+      resourcesState.perPage = action.payload.per_page;
       resourcesState.total = action.payload.total;
       resourcesState.page = action.payload.page;
       resourcesState.totalPages = action.payload.total_pages;

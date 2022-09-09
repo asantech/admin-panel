@@ -23,14 +23,17 @@ function Navbar(props: any) {
 
   return (
     <nav className='top-navbar navbar navbar-light px-3'>
-      <div className='container-fluid'>
+      <div className='container'>
         <Button
           className='navbar-toggler'
           onClickHandler={props.togglerBtnOnClickHandler}
         >
           <span className='navbar-toggler-icon'></span>
         </Button>
-        <Button onClickHandler={signOut}>
+        <Button onClickHandler={() => {}} className='ms-auto rounded-circle'>
+          <i className='bi bi-bell text-danger'></i>
+        </Button>
+        <Button onClickHandler={signOut} className='rounded-circle mx-2'>
           <i className='bi bi-box-arrow-right text-danger'></i>
         </Button>
       </div>
