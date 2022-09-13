@@ -31,3 +31,13 @@ const requestsReportSlice = createSlice({
 export const getRequestsCount = (requestType: string) => {
   return requestsReportSlice.getInitialState();
 };
+
+export const addToRequestsList = (type: 'users' | 'resources', data: any) => {
+  if (type === 'users') {
+    requestsReportSlice.actions.addUsersRequest(data);
+  } else if (type === 'resources') {
+    requestsReportSlice.actions.addResourcesRequest(data);
+  }
+};
+
+export default requestsReportSlice.reducer;
