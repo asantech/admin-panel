@@ -1,5 +1,5 @@
-import apiConstants from '@/utils/constants/api.constants';
-import * as formConstants from '@/utils/constants/form.contants';
+import apiConstants from 'utils/constants/api.constants';
+import * as formConstants from 'utils/constants/form.contants';
 
 export const baseAPIConfig = Object.freeze({
   baseURL: apiConstants.baseURL,

@@ -2,16 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { useNavigate, Link } from 'react-router-dom';
 
-import Form from '@/components/forms/form/Form';
-import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
+import Form from 'components/forms/form/Form';
+import OverlayedSpinner from 'components/basic/spinner/OverlayedSpinner';
 
-import Card from '@/components/basic/cards/Card';
-import CardBody from '@/components/basic/cards/CardBody';
+import Card from 'components/basic/cards/Card';
+import CardBody from 'components/basic/cards/CardBody';
 
-import * as signInConstants from '@/utils/constants/signIn.constants';
-import * as authSlice from '@/store/authentication/auth';
+import * as signInConstants from 'utils/constants/signIn.constants';
+import * as authSlice from 'store/authentication/auth';
 
-import IntroAlert from '@/components/custom/alert/IntroAlert';
+import IntroAlert from 'components/custom/alert/IntroAlert';
 
 import './SignInPage.css';
 

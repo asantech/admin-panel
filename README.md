@@ -11,7 +11,6 @@ An admin panel
 5. Bootstrap 5
 6. React Toastify Library (only for toasts and speeding the development)
 7. Joi
-8. CRACO
 
 Note: "React Bootstrap" is not installed and not used purposely, for better practicing bootstrap code
 

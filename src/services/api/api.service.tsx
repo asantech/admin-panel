@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import { toast } from 'react-toastify';
 
-import apiConstants from '@/utils/constants/api.constants';
-import msgsConstants from '@/utils/constants/msgs.constants';
+import apiConstants from 'utils/constants/api.constants';
+import msgsConstants from 'utils/constants/msgs.constants';
 
 axios.interceptors.response.use(undefined, error => {
   const expectedError =

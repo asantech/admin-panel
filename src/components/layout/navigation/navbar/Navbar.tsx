@@ -1,9 +1,9 @@
-import Button from '@/components/basic/button/Button';
+import Button from 'components/basic/button/Button';
 
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import * as authActions from '@/store/authentication/auth';
+import * as authActions from 'store/authentication/auth';
 
 import './Navbar.css';
 

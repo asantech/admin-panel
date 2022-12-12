@@ -4,12 +4,12 @@ import { has } from 'lodash';
 
 import { toast } from 'react-toastify';
 
-import * as signUpConstants from '@/utils/constants/signUp.constants';
-import * as signInConstants from '@/utils/constants/signIn.constants';
-import msgsConstants from '@/utils/constants/msgs.constants';
+import * as signUpConstants from 'utils/constants/signUp.constants';
+import * as signInConstants from 'utils/constants/signIn.constants';
+import msgsConstants from 'utils/constants/msgs.constants';
 
-import * as apiServices from '@/services/API/API.service';
-import * as storageServices from '@/services/Storage/Storage.service';
+import * as apiServices from 'services/API/API.service';
+import * as storageServices from 'services/Storage/Storage.service';
 
 type InitialState = {
   userData: any;

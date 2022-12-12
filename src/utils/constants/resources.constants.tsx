@@ -1,4 +1,4 @@
-import apiConstants from '@/utils/constants/api.constants';
+import apiConstants from 'utils/constants/api.constants';
 
 export const baseAPIConfig = Object.freeze({
   baseURL: apiConstants.baseURL,

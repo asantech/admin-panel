@@ -1,4 +1,4 @@
-import Alert from '@/components/basic/alert/Alert';
+import Alert from 'components/basic/alert/Alert';
 
 type Props = {
   msg?: string;

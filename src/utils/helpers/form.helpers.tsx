@@ -1,9 +1,9 @@
 import { forEach, map, isEmpty } from 'lodash';
 import Joi from 'joi';
 
-import Input from '@/components/forms/input/Input';
-import InputField from '@/components/forms/inputField/InputField';
-import Button from '@/components/basic/button/Button';
+import Input from 'components/forms/input/Input';
+import InputField from 'components/forms/inputField/InputField';
+import Button from 'components/basic/button/Button';
 
 function createItem(itemSpecs: any, state: any, errMsgs: any) {
   const { kind, id } = itemSpecs;

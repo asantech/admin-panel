@@ -1,5 +1,5 @@
-import apiConstants from '@/utils/constants/api.constants';
-import * as formConstants from '@/utils/constants/form.contants';
+import apiConstants from 'utils/constants/api.constants';
+import * as formConstants from 'utils/constants/form.contants';
 
 export const items = Object.freeze([
   formConstants.controls.email,

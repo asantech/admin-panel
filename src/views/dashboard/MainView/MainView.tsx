@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 
 import EntityInfoCard from '../Cards/EntityInfoCard';
 
-import * as usersActions from '@/store/entities/users';
-import * as resourcesActions from '@/store/entities/resources';
+import * as usersActions from 'store/entities/users';
+import * as resourcesActions from 'store/entities/resources';
 
-import msgsConstants from '@/utils/constants/msgs.constants';
-import * as dashboardConstants from '@/utils/constants/dashboard.constants';
+import msgsConstants from 'utils/constants/msgs.constants';
+import * as dashboardConstants from 'utils/constants/dashboard.constants';
 
-import Alert from '@/components/basic/alert/Alert';
+import Alert from 'components/basic/alert/Alert';
 
 function MainView() {
   const loggedInMsgDisplay = useSelector(

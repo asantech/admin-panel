@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import Form from '@/components/forms/form/Form';
-import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
-import Image from '@/components/content/image/Image';
+import Form from 'components/forms/form/Form';
+import OverlayedSpinner from 'components/basic/spinner/OverlayedSpinner';
+import Image from 'components/content/image/Image';
 
-import * as userConstants from '@/utils/constants/user.constants';
-import * as userSlice from '@/store/entities/users';
-import * as generalHelpers from '@/utils/helpers/general.helpers';
+import * as userConstants from 'utils/constants/user.constants';
+import * as userSlice from 'store/entities/users';
+import * as generalHelpers from 'utils/helpers/general.helpers';
 
 function UserView() {
   const location = useLocation();
