@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 
 import styles from './Sidebar.module.css';
 
-import Accordion from '@/components/basic/accordion/Accordion';
+import Accordion from 'components/basic/accordion/Accordion';
 
-import * as dashboardConstants from '@/utils/constants/dashboard.constants';
+import * as dashboardConstants from 'utils/constants/dashboard.constants';
 
 function Sidebar() {
   const email: string = useSelector((state: any) => state.auth.userData.email);

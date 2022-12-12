@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
-import * as signUpConstants from '@/utils/constants/signUp.constants';
-import * as authSlice from '@/store/authentication/auth';
+import * as signUpConstants from 'utils/constants/signUp.constants';
+import * as authSlice from 'store/authentication/auth';
 
-import Form from '@/components/forms/form/Form';
-import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
-import Card from '@/components/basic/cards/Card';
-import IntroAlert from '@/components/custom/alert/IntroAlert';
+import Form from 'components/forms/form/Form';
+import OverlayedSpinner from 'components/basic/spinner/OverlayedSpinner';
+import Card from 'components/basic/cards/Card';
+import IntroAlert from 'components/custom/alert/IntroAlert';
 
 import './SignUpPage.css';
 

@@ -3,10 +3,10 @@ import { has } from 'lodash';
 
 import { toast } from 'react-toastify';
 
-import * as resourcesConstants from '@/utils/constants/resources.constants';
-import msgsConstants from '@/utils/constants/msgs.constants';
+import * as resourcesConstants from 'utils/constants/resources.constants';
+import msgsConstants from 'utils/constants/msgs.constants';
 
-import * as apiServices from '@/services/API/API.service';
+import * as apiServices from 'services/API/API.service';
 
 type InitialState = {
   resources: [];

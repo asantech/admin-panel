@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { find, isEmpty, has } from 'lodash';
 
-import * as formHelpers from '@/utils/helpers/form.helpers';
+import * as formHelpers from 'utils/helpers/form.helpers';
 
 function Form(props: any) {
   let { items } = props;

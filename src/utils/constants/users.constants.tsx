@@ -1,9 +1,9 @@
-import apiConstants from '@/utils/constants/api.constants';
-import * as usersActions from '@/store/entities/users';
+import apiConstants from 'utils/constants/api.constants';
+import * as usersActions from 'store/entities/users';
 
 import { Link } from 'react-router-dom';
 
-import Image from '@/components/content/image/Image';
+import Image from 'components/content/image/Image';
 
 export const baseAPIConfig = Object.freeze({
   baseURL: apiConstants.baseURL,

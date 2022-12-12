@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
-import store from '@/store/index';
+import store from 'store/index';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 

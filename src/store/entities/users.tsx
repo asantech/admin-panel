@@ -4,11 +4,11 @@ import { has, isUndefined } from 'lodash';
 
 import { toast } from 'react-toastify';
 
-import * as usersConstants from '@/utils/constants/users.constants';
-import * as userConstants from '@/utils/constants/user.constants';
-import msgsConstants from '@/utils/constants/msgs.constants';
+import * as usersConstants from 'utils/constants/users.constants';
+import * as userConstants from 'utils/constants/user.constants';
+import msgsConstants from 'utils/constants/msgs.constants';
 
-import * as apiServices from '@/services/API/API.service';
+import * as apiServices from 'services/API/API.service';
 
 type InitialState = {
   users: any;

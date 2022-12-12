@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 
-import * as usersActions from '@/store/entities/users';
-import * as usersConstants from '@/utils/constants/users.constants';
+import * as usersActions from 'store/entities/users';
+import * as usersConstants from 'utils/constants/users.constants';
 
-import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
-import Table from '@/components/content/table/Table';
-import Pagination from '@/components/layout/navigation/Pagination/PaginatedItems';
+import OverlayedSpinner from 'components/basic/spinner/OverlayedSpinner';
+import Table from 'components/content/table/Table';
+import Pagination from 'components/layout/navigation/Pagination/PaginatedItems';
 
 function UsersView() {
   const dispatch = useDispatch();
