@@ -4,6 +4,14 @@ import { map } from 'lodash';
 import Card from '@/components/basic/cards/Card';
 import CardBody from '@/components/basic/cards/CardBody';
 
+function ColorBadge({ color }: any) {
+  return (
+    <span className='badge' style={{ backgroundColor: color, color }}>
+      .
+    </span>
+  );
+}
+
 function ResourceView() {
   const location = useLocation();
 
@@ -22,6 +30,7 @@ function ResourceView() {
                   <li key={key} className='mb-2'>
                     <span className='fw-bold'>{key} :</span>
                     <span className='mx-2'>{val}</span>
+                    {key === 'color' && <ColorBadge color={val} />}
                   </li>
                 ))}
               </ul>

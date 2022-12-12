@@ -8,8 +8,8 @@ import * as signUpConstants from '@/utils/constants/signUp.constants';
 import * as signInConstants from '@/utils/constants/signIn.constants';
 import msgsConstants from '@/utils/constants/msgs.constants';
 
-import * as apiServices from '@/services/api/api.service';
-import * as storageServices from '@/services/storage/storage.service';
+import * as apiServices from '@/services/API/API.service';
+import * as storageServices from '@/services/Storage/Storage.service';
 
 type InitialState = {
   userData: any;

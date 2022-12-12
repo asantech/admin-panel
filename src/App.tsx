@@ -2,9 +2,9 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import * as authService from '@/services/auth/auth.service';
+import * as authService from '@/services/Auth/Auth.service';
 import * as authActions from '@/store/authentication/auth';
-import * as storageService from '@/services/storage/storage.service';
+import * as storageService from '@/services/Storage/Storage.service';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';

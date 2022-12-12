@@ -1,6 +1,6 @@
 import { isString } from 'lodash';
 
-import * as storageServices from '../storage/storage.service';
+import * as storageServices from '../Storage/Storage.service';
 
 export const isLoggedIn = () => {
   return (

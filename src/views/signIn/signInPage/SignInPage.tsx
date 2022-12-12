@@ -11,6 +11,8 @@ import CardBody from '@/components/basic/cards/CardBody';
 import * as signInConstants from '@/utils/constants/signIn.constants';
 import * as authSlice from '@/store/authentication/auth';
 
+import IntroAlert from '@/components/custom/alert/IntroAlert';
+
 import './SignInPage.css';
 
 function SignInPage() {
@@ -48,6 +50,7 @@ function SignInPage() {
           <Card className='pt-4 px-3 pb-4 position-relative max-width-576px'>
             <CardBody>
               {showSpinner && <OverlayedSpinner />}
+              <IntroAlert />
               <Form
                 items={signInConstants.items}
                 onHandleSubmit={onHandleSubmitForm}

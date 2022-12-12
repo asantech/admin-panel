@@ -1,14 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useNavigate, Link } from 'react-router-dom';
-
-import Form from '@/components/forms/form/Form';
-import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
-
-import Card from '@/components/basic/cards/Card';
 
 import * as signUpConstants from '@/utils/constants/signUp.constants';
 import * as authSlice from '@/store/authentication/auth';
+
+import Form from '@/components/forms/form/Form';
+import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
+import Card from '@/components/basic/cards/Card';
+import IntroAlert from '@/components/custom/alert/IntroAlert';
 
 import './SignUpPage.css';
 
@@ -46,6 +45,7 @@ function SignUpPage() {
           </h1>
           <Card className='pt-4 px-3 pb-4 position-relative max-width-576px'>
             {showSpinner && <OverlayedSpinner />}
+            <IntroAlert />
             <Form
               items={signUpConstants.items}
               onHandleSubmit={onHandleSubmitForm}

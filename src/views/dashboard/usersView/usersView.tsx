@@ -8,14 +8,16 @@ import * as usersConstants from '@/utils/constants/users.constants';
 
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 import Table from '@/components/content/table/Table';
-import Pagination from '@/components/layout/navigation/pagination/Pagination';
+import Pagination from '@/components/layout/navigation/Pagination/PaginatedItems';
 
 function UsersView() {
   const dispatch = useDispatch();
   const {
     users,
     loading: isLoading,
+    perPage,
     page,
+    total: totalItems,
     totalPages,
   } = useSelector((state: any) => state.users);
 
@@ -74,8 +76,12 @@ function UsersView() {
       </div>
       <Pagination
         page={page}
+        totalItems={totalItems}
+        itemsPerPage={perPage}
         totalPages={totalPages}
-        onPageItemClick={goToPage}
+        handlePageClick={({ selected }: any) => {
+          goToPage(selected + 1);
+        }}
       />
     </div>
   );

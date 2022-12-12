@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import EntityInfoCard from '../cards/EntityInfoCard';
+import EntityInfoCard from '../Cards/EntityInfoCard';
 
 import * as usersActions from '@/store/entities/users';
 import * as resourcesActions from '@/store/entities/resources';

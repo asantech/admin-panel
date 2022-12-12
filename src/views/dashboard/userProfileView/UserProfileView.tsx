@@ -16,7 +16,7 @@ import * as generalHelpers from '@/utils/helpers/general.helpers';
 import * as userConstants from '@/utils/constants/user.constants';
 
 type UserData = {
-  // علت کار عدم اختصا دادن بررسی شود
+  // علت کار عدم اختصاص دادن بررسی شود
   id: string | number;
   email: string;
   avatar: string;
@@ -99,7 +99,7 @@ function UserProfileView() {
               <Alert type='warning'>
                 This User hasn't listed any skills yet!.
                 <div className='small'>
-                  ( no skills got recieved from the server. )
+                  ( no skills got received from the server. )
                 </div>
               </Alert>
             </CardBody>

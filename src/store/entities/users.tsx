@@ -8,10 +8,11 @@ import * as usersConstants from '@/utils/constants/users.constants';
 import * as userConstants from '@/utils/constants/user.constants';
 import msgsConstants from '@/utils/constants/msgs.constants';
 
-import * as apiServices from '@/services/api/api.service';
+import * as apiServices from '@/services/API/API.service';
 
 type InitialState = {
   users: any;
+  perPage: number;
   total: number;
   page: number;
   totalPages: number;
@@ -20,6 +21,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   users: [],
+  perPage: 0,
   total: 0,
   page: 0,
   totalPages: 0,
@@ -35,6 +37,7 @@ const usersSlice = createSlice({
     },
     setUsers: (usersState, action) => {
       usersState.users = action.payload.data;
+      usersState.perPage = action.payload.per_page;
       usersState.total = action.payload.total;
       usersState.page = action.payload.page;
       usersState.totalPages = action.payload.total_pages;

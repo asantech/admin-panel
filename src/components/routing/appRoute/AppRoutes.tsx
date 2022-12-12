@@ -2,10 +2,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
-import SignUpPage from '@/views/signUp/signUpPage/SignUpPage';
-import SignInPage from '@/views/signIn/signInPage/SignInPage';
-import DashboardPage from '@/views/dashboard/dashboardPage/DashboardPage';
-import NotFoundView from '@/views/errMsgs/notFound/NotFoundView';
+import SignUpPage from '@/views/signUp/SignUpPage/SignUpPage';
+import SignInPage from '@/views/signIn/SignInPage/SignInPage';
+import DashboardPage from '@/views/dashboard/DashboardPage/DashboardPage';
+import NotFoundView from '@/views/errMsgs/NotFound/NotFoundView';
 
 function AppRoutes() {
   const isLoggedIn = useSelector((state: any) => state.auth.userIsLoggedIn);

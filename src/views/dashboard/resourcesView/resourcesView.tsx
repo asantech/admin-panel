@@ -8,7 +8,7 @@ import * as resourcesConstants from '@/utils/constants/resources.constants';
 
 import OverlayedSpinner from '@/components/basic/spinner/OverlayedSpinner';
 import Table from '@/components/content/table/Table';
-import Pagination from '@/components/layout/navigation/pagination/Pagination';
+import Pagination from '@/components/layout/navigation/Pagination/PaginatedItems';
 
 import './ResourcesView.css';
 
@@ -18,12 +18,14 @@ function ResourcesView() {
     resources,
     loading: isLoading,
     page,
+    perPage,
+    total: totalItems,
     totalPages,
   } = useSelector((state: any) => state.resources);
 
   const navigate = useNavigate();
 
-  function goToReourceInfoPage(resource: any) {
+  function goToResourceInfoPage(resource: any) {
     navigate('/dashboard/resource/' + resource.id, {
       state: resource,
     });
@@ -52,13 +54,17 @@ function ResourcesView() {
           className='table-striped table-hover align-middle'
           cols={resourcesConstants.resourcesSchema}
           data={resources}
-          rowOnClick={(e: any, data: any) => goToReourceInfoPage(data)}
+          rowOnClick={(e: any, data: any) => goToResourceInfoPage(data)}
         />
       </div>
       <Pagination
         page={page}
+        totalItems={totalItems}
+        itemsPerPage={perPage}
         totalPages={totalPages}
-        onPageItemClick={goToPage}
+        handlePageClick={({ selected }: any) => {
+          goToPage(selected + 1);
+        }}
       />
     </div>
   );
