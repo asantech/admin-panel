@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
-import * as authService from 'services/Auth/Auth.service';
+import * as authService from 'services/Auth/auth.service';
 import * as authActions from 'store/authentication/auth';
 import * as storageService from 'services/Storage/Storage.service';
 
